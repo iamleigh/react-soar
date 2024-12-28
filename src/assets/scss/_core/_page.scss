@@ -36,6 +36,14 @@ body {
 	@include bp(min-width, md) {
 		padding-left: var(--sidebar-width, $sidebar-width);
 	}
+
+	#root {
+		@include bp(min-width, md) {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+	}
 }
 
 [hidden] {

@@ -1,12 +1,11 @@
-import React from "react";
-import { Header } from "../containers/Header";
+import React from "react"
+import { Page } from "../layouts/Page"
 
 const Settings: React.FC = () => {
 	return (
-		<>
-			<Header title="Settings" />
+		<Page title="Settings">
 			<p>Welcome to my content</p>
-		</>
+		</Page>
 	)
 }
 

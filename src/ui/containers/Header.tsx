@@ -97,13 +97,13 @@ const Title = styled.h1`
 `
 
 interface HeaderProps {
-	title: string,
-	sidebarFn?: ( e: React.MouseEvent<HTMLButtonElement> ) => void,
+	title: string
+	sidebarFn?: ( e: React.MouseEvent<HTMLButtonElement> ) => void
 }
 
-const Header: React.FC<HeaderProps> = ({ title, sidebarFn }) => {
+const Header: React.FC<HeaderProps> = ({ title, sidebarFn, ...props }) => {
 	return (
-		<Container>
+		<Container { ...props }>
 			<LeftGroup>
 				<ButtonIcon icon="bars" label="Open Menu" onClick={ sidebarFn } />
 			</LeftGroup>
