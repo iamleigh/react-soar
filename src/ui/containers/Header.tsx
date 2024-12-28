@@ -113,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ title, sidebarFn }) => {
 			<RightGroup>
 				<Search />
 				<ButtonIcon icon="settings" label="Open Settings" />
-				<ButtonIcon icon="notification" label="Open Notification" dark />
+				<ButtonIcon icon="notification" label="Open Notification" />
 				<User image="https://i.pravatar.cc/300" />
 			</RightGroup>
 		</Container>
