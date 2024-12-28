@@ -35,6 +35,9 @@
 	// Sidebar
 	--sidebar-width: #{$sidebar-width};
 
+	// Transition
+	--transition-smooth: 0.2s ease;
+
 	@include bp(min-width, md) {
 		// Font
 		--font-size: #{$font-size-base-md};
