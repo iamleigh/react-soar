@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { Icon as UIIcon } from "./Icon";
+import React from "react"
+import styled from "styled-components"
+import { Icon as UIIcon } from "./Icon"
 
 const Container = styled.div`
 	width: 100%;
 	position: relative;
-`;
+`
 
 const Input = styled.input`
 	width: 100%;
@@ -37,7 +37,7 @@ const Input = styled.input`
 	&:focus {
 		background: var(--color-mono-light);
 	}
-`;
+`
 
 const Icon = styled(UIIcon)`
 	position: absolute;
@@ -51,7 +51,7 @@ const Icon = styled(UIIcon)`
 		left: 25px;
 		font-size: 20px;
 	}
-`;
+`
 
 const Search: React.FC = () => {
 	return (
@@ -59,7 +59,7 @@ const Search: React.FC = () => {
 			<Icon name="magnifying-glass" />
 			<Input type="text" placeholder="Search for something" />
 		</Container>
-	);
+	)
 }
 
 export { Search }
