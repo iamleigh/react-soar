@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { global } from "../../utils/tokens"
 import { Header as UIHeader } from "../containers/Header"
+import { Sidebar } from "../containers/Sidebar"
 import { Content as UIContent } from "../containers/Content"
 
 const Header = styled(UIHeader)`
@@ -19,18 +20,37 @@ const Content = styled(UIContent)`
 interface PageProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 	title: string
 	fullwidth?: boolean
-	sidebarFn?: ( e: React.MouseEvent<HTMLButtonElement> ) => void
 }
 
 const Page: React.FC<PageProps> = ({
 	title,
 	fullwidth,
-	sidebarFn,
 	...props
 }) => {
+	const [sidebar, setSidebar] = useState(false)
+
+	useEffect(() => {
+		// Get the small screen breakpoint from CSS
+		const style = window.getComputedStyle( document.documentElement )
+		const breakpoint = parseInt( style.getPropertyValue( '--bp-sm' ).replace( 'px', '' ) )
+
+		// Update sidebar on window resize
+		const handleResize = () => window.innerWidth > breakpoint && setSidebar( false )
+		window.addEventListener( 'resize', handleResize )
+
+		// Cleanup on unmount
+		return () => {
+			window.removeEventListener( 'resize', handleResize )
+		}
+	}, [])
+
+	const openSidebar = () => setSidebar(!sidebar)
+	const closeSidebar = () => setSidebar(false)
+
 	return (
 		<>
-			<Header title={ title } sidebarFn={ sidebarFn } />
+			<Header title={ title } sidebarFn={ openSidebar } />
+			<Sidebar open={ sidebar } onClose={ closeSidebar } />
 			<Content fullwidth={ fullwidth }>
 				{ props.children }
 			</Content>
