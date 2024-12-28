@@ -1,5 +1,16 @@
 # SOAR Frontend Exercise
 
+## Workflow
+This project uses a Gitflow workflow using two main branches to record the history of the project:
+- `master`: Stores the production release
+- `develop`: Stores the "next release" code
+
+For supporting branches we're going to use:
+- `feature/`: Stores changes to be introduced in the code. Uses `develop` as its parent branch.
+- `hotfix/`: Stores patch code to be released quickly into production. Uses `master` as its parent branch.
+- `release/`: Stores the code to be released, initializing a "next release" cycle in the `develop` branch. Uses `master` as its parent branch but is based on the latest `develop` branch.
+
+## Vite + React + TypeScript
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
