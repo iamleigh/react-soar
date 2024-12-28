@@ -9,7 +9,7 @@ const Container = styled.ul`
 	list-style: none;
 `
 
-const Nav: React.FC = () => {
+const Nav: React.FC = ({ ...props }) => {
 	const options = [
 		{
 			icon: 'home',
@@ -59,7 +59,7 @@ const Nav: React.FC = () => {
 	];
 
 	return (
-		<nav>
+		<nav { ...props }>
 			<Container>
 				{ options.map( ( option, index ) => {
 					return (
