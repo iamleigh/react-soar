@@ -16,11 +16,11 @@ const Container = styled.aside<{ $open?: boolean }>`
 	bottom: 0;
 	padding: 25px;
 	background: ${color.mono.light};
+	box-shadow: 1px 0 #E6EFF5;
 
 	@media screen and (min-width: ${global.breakpoint}px) {
 		display: block;
 		padding: 30px;
-		box-shadow: 1px 0 #E6EFF5;
 	}
 `
 
