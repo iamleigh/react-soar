@@ -101,9 +101,9 @@ interface HeaderProps {
 	sidebarFn?: ( e: React.MouseEvent<HTMLButtonElement> ) => void,
 }
 
-const Header: React.FC<HeaderProps> = ({ title, sidebarFn }) => {
+const Header: React.FC<HeaderProps> = ({ title, sidebarFn, ...props }) => {
 	return (
-		<Container>
+		<Container { ...props }>
 			<LeftGroup>
 				<ButtonIcon icon="bars" label="Open Menu" onClick={ sidebarFn } />
 			</LeftGroup>

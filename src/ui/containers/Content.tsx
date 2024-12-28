@@ -21,7 +21,7 @@ interface ContentProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 
 const Content: React.FC<ContentProps> = ({ fullwidth = false, ...props }) => {
 	return (
-		<Container $fullwidth={ fullwidth }>
+		<Container $fullwidth={ fullwidth } { ...props }>
 			{ props.children }
 		</Container>
 	);
