@@ -17,18 +17,20 @@ const Content = styled(UIContent)`
 `
 
 interface PageProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
-	title: string,
+	title: string
 	fullwidth?: boolean
+	sidebarFn?: ( e: React.MouseEvent<HTMLButtonElement> ) => void
 }
 
 const Page: React.FC<PageProps> = ({
 	title,
 	fullwidth,
+	sidebarFn,
 	...props
 }) => {
 	return (
 		<>
-			<Header title={ title } />
+			<Header title={ title } sidebarFn={ sidebarFn } />
 			<Content fullwidth={ fullwidth }>
 				{ props.children }
 			</Content>
