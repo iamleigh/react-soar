@@ -1,0 +1,129 @@
+@use "./_utils/icons" as *;
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?id3eun');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?id3eun#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?id3eun') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?id3eun') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?id3eun##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.soaricons {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.soaricons--bars {
+  &:before {
+    content: $soaricons--bars;
+  }
+}
+.soaricons--transfer {
+  &:before {
+    content: $soaricons--transfer;
+  }
+}
+.soaricons--home {
+  &:before {
+    content: $soaricons--home;
+  }
+}
+.soaricons--user {
+  &:before {
+    content: $soaricons--user;
+  }
+}
+.soaricons--economic-investment {
+  &:before {
+    content: $soaricons--economic-investment;
+  }
+}
+.soaricons--credit-card {
+  &:before {
+    content: $soaricons--credit-card;
+  }
+}
+.soaricons--loan {
+  &:before {
+    content: $soaricons--loan;
+  }
+}
+.soaricons--service {
+  &:before {
+    content: $soaricons--service;
+  }
+}
+.soaricons--econometrics {
+  &:before {
+    content: $soaricons--econometrics;
+  }
+}
+.soaricons--settings-solid {
+  &:before {
+    content: $soaricons--settings-solid;
+  }
+}
+.soaricons--pencil {
+  &:before {
+    content: $soaricons--pencil;
+  }
+}
+.soaricons--chevron-right {
+  &:before {
+    content: $soaricons--chevron-right;
+  }
+}
+.soaricons--task {
+  &:before {
+    content: $soaricons--task;
+  }
+}
+.soaricons--settings {
+  &:before {
+    content: $soaricons--settings;
+  }
+}
+.soaricons--notification {
+  &:before {
+    content: $soaricons--notification;
+  }
+}
+.soaricons--magnifying-glass {
+  &:before {
+    content: $soaricons--magnifying-glass;
+  }
+}
+.soaricons--paper-plane {
+  &:before {
+    content: $soaricons--paper-plane;
+  }
+}
+.soaricons--money {
+  &:before {
+    content: $soaricons--money;
+  }
+}
+.soaricons--paypal {
+  &:before {
+    content: $soaricons--paypal;
+  }
+}
+.soaricons--coin {
+  &:before {
+    content: $soaricons--coin;
+  }
+}
