@@ -1,12 +1,11 @@
-import React from "react";
-import { Header } from "../containers/Header";
+import React from "react"
+import { Page } from "../layouts/Page"
 
 const Dashboard: React.FC = () => {
 	return (
-		<>
-			<Header title="Dashboard" />
+		<Page title="Dashboard" fullwidth={ true }>
 			<p>Welcome to my content</p>
-		</>
+		</Page>
 	)
 }
 
