@@ -53,9 +53,9 @@ const Icon = styled(UIIcon)`
 	}
 `
 
-const Search: React.FC = () => {
+const Search: React.FC = ({ ...props }) => {
 	return (
-		<Container>
+		<Container { ...props }>
 			<Icon name="magnifying-glass" />
 			<Input type="text" placeholder="Search for something" />
 		</Container>
