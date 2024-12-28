@@ -10,6 +10,7 @@ const Container = styled.aside<{ $open?: boolean }>`
 	max-width: 250px;
 	${props => !props.$open && 'display: none;'}
 	position: absolute;
+	z-index: 1;
 	top: 0;
 	left: 0;
 	bottom: 0;

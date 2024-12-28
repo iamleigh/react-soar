@@ -1,8 +1,12 @@
 import React from "react";
+import { Header } from "../containers/Header";
 
 const Settings: React.FC = () => {
 	return (
-		<h1>Settings</h1>
+		<>
+			<Header title="Settings" />
+			<p>Welcome to my content</p>
+		</>
 	)
 }
 

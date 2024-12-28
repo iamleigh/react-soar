@@ -1,8 +1,12 @@
 import React from "react";
+import { Header } from "../containers/Header";
 
 const Dashboard: React.FC = () => {
 	return (
-		<h1>Dashboard</h1>
+		<>
+			<Header title="Dashboard" />
+			<p>Welcome to my content</p>
+		</>
 	)
 }
 
