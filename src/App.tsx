@@ -1,19 +1,13 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { Sidebar } from './ui/containers/Sidebar'
 import Dashboard from './ui/pages/Dashboard'
 import Settings from './ui/pages/Settings'
-import { Link } from 'react-router-dom'
 
 const App: React.FC = () => {
 	return (
 		<>
-			{/* Navigation */}
-			<nav>
-				<ul>
-					<li><Link to="/">Dashboard</Link></li>
-					<li><Link to="/settings">Settings</Link></li>
-				</ul>
-			</nav>
+			<Sidebar />
 
 			{/* Routes */}
 			<Routes>
