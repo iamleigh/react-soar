@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { global } from "../../utils/tokens"
 import { Page } from "../layouts/Page"
 import { Box } from "../components/Box"
-import { Card as UICard } from "../components/Card"
+import { Card as UICard, CardProps } from "../components/Card"
 import { CardGroup } from "../components/CardGroup"
 
 const Card = styled(UICard)`
@@ -19,12 +19,13 @@ const Card = styled(UICard)`
 `
 
 const Dashboard: React.FC = () => {
-	const [cards, setCards] = useState([]);
+	const [cards, setCards] = useState<CardProps[]>([]);
 
 	useEffect(() => {
 		fetch( '/api/card' )
 			.then((res) => res.json())
-			.then((data) => setCards(data))
+			.then((data: CardProps[]) => setCards(data))
+			.catch((err) => console.log( 'Failed to fetch cards:', err ))
 	}, [])
 
 	return (
