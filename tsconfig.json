@@ -5,10 +5,6 @@
 		{ "path": "./tsconfig.node.json" }
 	],
 	"compilerOptions": {
-		"paths": {
-			"@/*": ["./src/*"],
-			"@components/*": ["./src/ui/components/*"],
-			"@containers/*": ["./src/ui/containers/*"],
-		}
+		"types": ["node"]
 	}
 }
