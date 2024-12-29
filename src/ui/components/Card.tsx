@@ -10,6 +10,9 @@ import chipLight2x from '../../assets/images/card-chip-light@2x.png'
 import chipDark1x from '../../assets/images/card-chip-dark.png'
 import chipDark2x from '../../assets/images/card-chip-dark@2x.png'
 
+// Import network logos
+import MastercardLogo from '../../assets/images/logo-mastercard.svg?react'
+
 const Container = styled.div<{ $light?: boolean }>`
 	width: 100%;
 	max-width: 265px;
@@ -118,6 +121,7 @@ const DetailsContent = styled.span`
 `
 
 const Number = styled.div<{ $light?: boolean }>`
+	position: relative;
 	margin: 0 -20px -18px;
 	padding: 16px 20px;
 	${ props => props.$light && 'border-top: 1px solid #DFEAF2;' }
@@ -129,6 +133,13 @@ const Number = styled.div<{ $light?: boolean }>`
 	font-weight: 700;
 	font-size: 15px;
 	line-height: 18px;
+
+	svg {
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		transform: translateY(-50%);
+	}
 
 	@media screen and (min-width: ${global.breakpoint}px) {
 		margin: 0 -26px -24px;
@@ -151,6 +162,19 @@ const Chip = styled.img`
 	@media screen and (max-width: ${global.breakpoint - 1}px) {
 		width: 29px;
 		height: 29px;
+	}
+`
+
+const Mastercard = styled(MastercardLogo)<{ $light?: boolean }>`
+	width: auto;
+	height: 18px;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		height: 30px;
+	}
+
+	circle {
+		fill: ${ props => !props.$light ? color.mono.light : '#9199AF' };
 	}
 `
 
@@ -232,6 +256,7 @@ const Card: React.FC<CardProps> = ({
 
 			<Number $light={ light }>
 				{ maskNumber( number ) }
+				<Mastercard aria-hidden="true" $light={ light } />
 			</Number>
 
 			<Chip
