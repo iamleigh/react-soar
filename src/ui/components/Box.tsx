@@ -70,7 +70,7 @@ const Box: React.FC<BoxProps> = ({ title, path, boxed = true, ...props }) => {
 	const uniqueId = `${title?.toLowerCase().replace(/\s+/g, '-')}-title`;
 
 	return (
-		<Container aria-labelledby={ uniqueId }>
+		<Container aria-labelledby={ uniqueId } { ...props }>
 			<Header>
 				<Title id={ uniqueId }>{ title }</Title>
 				{ path && <Link to={ path }>See All</Link> }
