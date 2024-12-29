@@ -178,16 +178,16 @@ const Mastercard = styled(MastercardLogo)<{ $light?: boolean }>`
 	}
 `
 
-type CardProps = {
-	name: string,
-	balance: number,
-	expiration: string,
-	number: number,
-	light: boolean,
+export interface CardProps {
+	name: string
+	balance: number
+	expiration: string
+	number: number
+	light: boolean
 	className?: string
 }
 
-const Card: React.FC<CardProps> = ({
+export const Card: React.FC<CardProps> = ({
 	name,
 	number,
 	balance,
@@ -267,5 +267,3 @@ const Card: React.FC<CardProps> = ({
 		</Container>
 	)
 }
-
-export { Card }
