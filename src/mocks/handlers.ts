@@ -18,5 +18,25 @@ export const handlers = [
 			zip: '45962',
 			country: 'USA'
 		})
+	}),
+
+	// Mock endpoint for user cards
+	http.get( '/api/card', () => {
+		return HttpResponse.json([
+			{
+				name: 'Eddy Cusuma',
+				number: 3778000098761234,
+				balance: 5756,
+				expiration: '2022-12',
+				light: false
+			},
+			{
+				name: 'Eddy Cusuma',
+				number: 3778000098761234,
+				balance: 5756,
+				expiration: '2022-12',
+				light: true
+			}
+		])
 	})
 ]
