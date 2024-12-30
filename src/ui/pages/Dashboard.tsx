@@ -7,6 +7,7 @@ import { Card as UICard, CardProps } from "../components/Card"
 import { CardGroup } from "../components/CardGroup"
 import { Transaction, TransactionProps } from "../components/Transaction"
 import { TransactionGroup } from "../components/TransactionGroup"
+import { BarChart } from "../components/BarChart"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -23,6 +24,7 @@ const Card = styled(UICard)`
 const Dashboard: React.FC = () => {
 	const [cards, setCards] = useState<CardProps[]>([])
 	const [transactions, setTransactions] = useState<TransactionProps[]>([])
+	const [activity, setActivity] = useState([])
 
 	useEffect(() => {
 		fetch( '/api/card' )
@@ -77,7 +79,7 @@ const Dashboard: React.FC = () => {
 
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px] mb-[22px]">
 				<Box title="Weekly Activity" className="basis-full mb-[22px] lg:basis-8/12 lg:mb-0">
-					<p>Content goes here</p>
+					{ activity.length > 0 && <BarChart datasets={ activity } /> }
 				</Box>
 
 				<Box title="Expense Statistics" className="basis-full lg:basis-4/12">
