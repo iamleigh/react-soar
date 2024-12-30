@@ -89,7 +89,11 @@ const BalanceAmount = styled.p`
 
 const Details = styled.div`
 	display: flex;
-	margin-bottom: 16px;
+	margin-bottom: 18px;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		margin-bottom: 36px;
+	}
 `
 
 const DetailsGroup = styled.div`
