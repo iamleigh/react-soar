@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { global } from "../../utils/tokens"
+import { global, color } from "../../utils/tokens"
 import { Page } from "../layouts/Page"
 import { Box } from "../components/Box"
 import { Card as UICard, CardProps } from "../components/Card"
@@ -24,7 +24,11 @@ const Card = styled(UICard)`
 const Dashboard: React.FC = () => {
 	const [cards, setCards] = useState<CardProps[]>([])
 	const [transactions, setTransactions] = useState<TransactionProps[]>([])
-	const [activity, setActivity] = useState([])
+	const [activity, setActivity] = useState<{
+		label: string,
+		data: number[],
+		backgroundColor: string
+	}[]>([])
 
 	useEffect(() => {
 		fetch( '/api/card' )
@@ -37,6 +41,50 @@ const Dashboard: React.FC = () => {
 			.then((data) => {
 				const latestTransactions = data.slice(-3).reverse()
 				setTransactions(latestTransactions)
+
+				// Get the last 7 days, including today
+				const today = new Date()
+				const lastWeekDates = Array.from({ length: 7 }, ( _, i ) => {
+					const date = new Date( today )
+					date.setDate( today.getDate() - i )
+					return date.toISOString().split( 'T' )[0] // Format: YYYY-MM-DD
+				})
+
+				// Initialize activity data structure
+				const deposits = Array(7).fill(0)
+				const withdrawals = Array(7).fill(0)
+
+				// Process transactions
+				data.forEach( ( transaction: TransactionProps ) => {
+					const transactionDate = transaction.date
+					const transactionIndex = lastWeekDates.indexOf( transactionDate )
+
+					if ( -1 !== transactionIndex ) {
+						if ( 0 < transaction.amount ) {
+							// Positive amounts are deposits
+							deposits[transactionIndex] += transaction.amount
+						} else {
+							// Negative amounts are withdrawals
+							withdrawals[transactionIndex] += Math.abs( transaction.amount )
+						}
+					}
+				})
+
+				// Prepare final activity array
+				const activityData = [
+					{
+						label: 'Withdrawal',
+						data: withdrawals.reverse(),
+						backgroundColor: color.mono.dark
+					},
+					{
+						label: 'Deposit',
+						data: deposits.reverse(),
+						backgroundColor: color.primary.base
+					}
+				]
+
+				setActivity( activityData )
 			})
 			.catch((err) => console.log( 'Failed to fetch transactions:', err ))
 	}, [])
