@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Chart as ChartJS, ChartOptions, Plugin, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import { color } from '../../utils/tokens'
 
 const legendMargin: Plugin = {
 	id: 'legendMargin',
@@ -40,7 +39,15 @@ const getWeekLabels = () => {
 	return weekLabels
 }
 
-export const BarChart: React.FC = ({}) => {
+interface BarChartProps {
+	datasets: {
+		label: string
+		data: number[]
+		backgroundColor: string
+	}[]
+}
+
+export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 	const [isLoading, setIsLoading] = useState<boolean>( false )
 	const [barWidth, setBarWidth] = useState<number>( 7 )
 
@@ -90,30 +97,18 @@ export const BarChart: React.FC = ({}) => {
 		} as any,
 	}
 
+	const setDatasets = datasets.map( ( dataset ) => ({
+		...dataset,
+		borderWidth: 0,
+		borderColor: 'rgba(0,0,0,0)',
+		borderRadius: 30,
+		borderSkipped: false,
+		maxBarThickness: barWidth,
+	}) )
+
 	const data = {
 		labels: getWeekLabels(),
-		datasets: [
-			{
-				label: 'Withdraw',
-				data: [400, 100, 300, 400, 100, 200, 300],
-				backgroundColor: color.mono.dark,
-				borderWidth: 0,
-				borderColor: 'rgba(0,0,0,0)',
-				borderRadius: 30,
-				borderSkipped: false,
-				maxBarThickness: barWidth,
-			},
-			{
-				label: 'Deposit',
-				data: [300, 200, 400, 500, 200, 300, 400],
-				backgroundColor: color.primary.base,
-				borderWidth: 0,
-				borderColor: 'rgba(0,0,0,0)',
-				borderRadius: 30,
-				borderSkipped: false,
-				maxBarThickness: barWidth,
-			},
-		],
+		datasets: setDatasets,
 	}
 
 	return isLoading ? 'loading data' : <Bar options={ options } data={ data } />
