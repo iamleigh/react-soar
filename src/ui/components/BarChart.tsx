@@ -34,7 +34,10 @@ const getWeekLabels = () => {
 	const index = days.findIndex( day => todayIndex === day )
 
 	// Reorganize the days array starting from today's index
-	const weekLabels = [ ...days.slice( index ), ...days.slice( 0, index ) ]
+	const weekLabels = [
+		...days.slice( index + 1 ),
+		...days.slice( 0, index + 1 )
+	]
 
 	return weekLabels
 }
