@@ -38,5 +38,32 @@ export const handlers = [
 				light: true
 			}
 		])
-	})
+	}),
+
+	// Mock endpoint for transactions
+	http.get( '/api/transactions', () => {
+		return HttpResponse.json([
+			{
+				type: 'debit',
+				source: 'card',
+				amount: -850,
+				date: '2021-01-28',
+				description: 'Deposit from my Card'
+			},
+			{
+				type: 'credit',
+				source: 'paypal',
+				amount: 2500,
+				date: '2021-01-25',
+				description: 'Deposit PayPal'
+			},
+			{
+				type: 'credit',
+				source: 'transfer',
+				amount: 5400,
+				date: '2021-01-21',
+				description: 'Jemi Wilson'
+			},
+		])
+	}),
 ]
