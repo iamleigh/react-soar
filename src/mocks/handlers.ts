@@ -46,16 +46,16 @@ export const handlers = [
 			{
 				type: 'debit',
 				source: 'card',
-				amount: -850,
-				date: '2021-01-28',
-				description: 'Deposit from my Card'
+				amount: -320,
+				date: '2021-01-21',
+				description: 'Jewelry payment'
 			},
 			{
 				type: 'credit',
 				source: 'paypal',
-				amount: 2500,
-				date: '2021-01-25',
-				description: 'Deposit PayPal'
+				amount: 1300,
+				date: '2021-01-21',
+				description: 'Allan Rickman'
 			},
 			{
 				type: 'credit',
@@ -67,16 +67,16 @@ export const handlers = [
 			{
 				type: 'credit',
 				source: 'paypal',
-				amount: 1300,
-				date: '2021-01-21',
-				description: 'Allan Rickman'
+				amount: 2500,
+				date: '2021-01-25',
+				description: 'Deposit PayPal'
 			},
 			{
 				type: 'debit',
 				source: 'card',
-				amount: -320,
-				date: '2021-01-21',
-				description: 'Jewelry payment'
+				amount: -850,
+				date: '2021-01-28',
+				description: 'Deposit from my Card'
 			},
 		])
 	}),
