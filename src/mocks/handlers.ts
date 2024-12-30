@@ -64,6 +64,20 @@ export const handlers = [
 				date: '2021-01-21',
 				description: 'Jemi Wilson'
 			},
+			{
+				type: 'credit',
+				source: 'paypal',
+				amount: 1300,
+				date: '2021-01-21',
+				description: 'Allan Rickman'
+			},
+			{
+				type: 'debit',
+				source: 'card',
+				amount: -320,
+				date: '2021-01-21',
+				description: 'Jewelry payment'
+			},
 		])
 	}),
 ]
