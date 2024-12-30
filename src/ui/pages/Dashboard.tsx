@@ -5,6 +5,8 @@ import { Page } from "../layouts/Page"
 import { Box } from "../components/Box"
 import { Card as UICard, CardProps } from "../components/Card"
 import { CardGroup } from "../components/CardGroup"
+import { Transaction, TransactionProps } from "../components/Transaction"
+import { TransactionGroup } from "../components/TransactionGroup"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -19,13 +21,22 @@ const Card = styled(UICard)`
 `
 
 const Dashboard: React.FC = () => {
-	const [cards, setCards] = useState<CardProps[]>([]);
+	const [cards, setCards] = useState<CardProps[]>([])
+	const [transactions, setTransactions] = useState<TransactionProps[]>([])
 
 	useEffect(() => {
 		fetch( '/api/card' )
 			.then((res) => res.json())
 			.then((data: CardProps[]) => setCards(data))
 			.catch((err) => console.log( 'Failed to fetch cards:', err ))
+
+		fetch( '/api/transactions' )
+			.then((res) => res.json())
+			.then((data) => {
+				const latestTransactions = data.slice(-3).reverse()
+				setTransactions(latestTransactions)
+			})
+			.catch((err) => console.log( 'Failed to fetch transactions:', err ))
 	}, [])
 
 	return (
@@ -48,7 +59,19 @@ const Dashboard: React.FC = () => {
 				</Box>
 
 				<Box title="Recent Transactions" className="basis-full lg:basis-4/12">
-					Transactions go here
+					<TransactionGroup>
+						{ transactions && transactions.map( ( transaction, index ) => {
+							return (
+								<Transaction
+									key={ index }
+									amount={ transaction.amount }
+									date={ transaction.date }
+									description={ transaction.description }
+									source={ transaction.source }
+									/>
+							)
+						}) }
+					</TransactionGroup>
 				</Box>
 			</div>
 

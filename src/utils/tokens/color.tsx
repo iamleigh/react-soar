@@ -13,5 +13,13 @@ export const color = {
 		base: '#B1B1B1',
 		light: '#FFFFFF',
 		dark: '#232323'
+	},
+	yellow: {
+		base: '#FFBB38',
+		light: '#FFF5D9'
+	},
+	green: {
+		base: '#16DBCC',
+		light: '#DCFAF8',
 	}
 }

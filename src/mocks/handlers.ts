@@ -44,35 +44,30 @@ export const handlers = [
 	http.get( '/api/transactions', () => {
 		return HttpResponse.json([
 			{
-				type: 'debit',
 				source: 'card',
 				amount: -320,
 				date: '2021-01-21',
 				description: 'Jewelry payment'
 			},
 			{
-				type: 'credit',
 				source: 'paypal',
 				amount: 1300,
 				date: '2021-01-21',
 				description: 'Allan Rickman'
 			},
 			{
-				type: 'credit',
 				source: 'transfer',
 				amount: 5400,
 				date: '2021-01-21',
 				description: 'Jemi Wilson'
 			},
 			{
-				type: 'credit',
 				source: 'paypal',
 				amount: 2500,
 				date: '2021-01-25',
 				description: 'Deposit PayPal'
 			},
 			{
-				type: 'debit',
 				source: 'card',
 				amount: -850,
 				date: '2021-01-28',
