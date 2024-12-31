@@ -32,6 +32,10 @@ const Container = styled.div`
 	@media screen and (min-width: ${global.breakpoint}px) {
 		max-height: 260px;
 	}
+
+	canvas {
+		width: 100%;
+	}
 `
 
 const getWeekLabels = () => {
@@ -99,7 +103,7 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 
 	const options: ChartOptions<'bar'> = {
 		responsive: true,
-		maintainAspectRatio: true,
+		maintainAspectRatio: false,
 		plugins: {
 			legend: {
 				align: 'end',
