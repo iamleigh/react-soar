@@ -157,9 +157,9 @@ const Dashboard: React.FC = () => {
 
 				// Convert categoryData into PieChart format with percentages
 				const expensesData = Object.keys( categoryData ).map(( category ) => ({
-					label: getExpenseLabel( category ),
+					label: getExpenseLabel( category ) as string,
 					value: parseInt( ( ( categoryData[category] / totalExpenses ) * 100 ).toFixed( 0 ) ),
-					color: getExpenseColor( category )
+					color: getExpenseColor( category ) as string
 				}))
 
 				setExpenses( expensesData )
