@@ -6,7 +6,7 @@ import { Bar } from 'react-chartjs-2'
 
 const legendMargin: Plugin = {
 	id: 'legendMargin',
-	afterInit(chart, args, plugins) {
+	afterInit(chart, plugins) {
 		if ( chart.legend ) {
 			const originalFit = chart.legend.fit
 			const margin = plugins.margin || 0
