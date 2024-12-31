@@ -1,61 +1,54 @@
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/soar-react)
+![GitHub Release](https://img.shields.io/github/v/release/iamleigh/react-soar)
+
 # SOAR Frontend Exercise
 
-## Workflow
-This project uses a Gitflow workflow using two main branches to record the history of the project:
-- `master`: Stores the production release
-- `develop`: Stores the "next release" code
+Hello stranger, welcome to `react-soar`, a repository with some dummy
+dashboard for a fintech app called **SOAR**.
+
+This exercise is built with **Vite + React + TypeScript**. Why? To keep
+things simple and basic, focusing to practice with routing (React Router)
+and state management (Redux or Context API) whenever is possible.
+
+Feel free to snoop and dig in, leave some comments, or if you want to practice
+your frontend skills, you're welcome to submit a pull request. However, if you're
+a QA Engineer looking for some fun breaking things, you're welcome as well to
+request some fixes.
+
+You can find the project published in **Vercel**:\
+https://react-soar.vercel.app/
+
+## Project Workflow
+This project uses a Gitflow workflow using two main branches to record the history
+of the project:
+- `master`: Stores the (latest) production release.
+- `develop`: Stores the "next release" code.
 
 For supporting branches we're going to use:
-- `feature/`: Stores changes to be introduced in the code. Uses `develop` as its parent branch.
-- `hotfix/`: Stores patch code to be released quickly into production. Uses `master` as its parent branch.
-- `release/`: Stores the code to be released, initializing a "next release" cycle in the `develop` branch. Uses `master` as its parent branch but is based on the latest `develop` branch.
+- `feature/`: To work on improvements or fixes in the roadmap.
+- `hotfix/`: To store code that's gonna patch production.
+- `release/`: To store code to be released, as part of the workflow.
 
-## Vite + React + TypeScript
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Getting Started
 
-Currently, two official plugins are available:
+### 📝 Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node v20 or later
 
-## Expanding the ESLint configuration
+### 👾 Available Script(s)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### `npm i`
 
-- Configure the top-level `parserOptions` property like this:
+Installs any specified packages in the `package.json` file inside
+`node_modules` folder.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+#### `npm run dev`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Runs the project locally enabling [http://localhost:5173/](http://localhost:5173/)
+for preview.\
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+The page will reload on every change you make.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### `npm run build`
+
+Builds files for production.
