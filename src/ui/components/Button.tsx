@@ -38,6 +38,12 @@ const UIButton = styled.button<{ $inline?: boolean }>`
 		border-color: ${ color.primary.base };
 		color: ${ color.primary.base };
 	}
+
+	&[disabled] {
+		cursor: default;
+		pointer-events: none;
+		opacity: 0.3;
+	}
 `
 
 const UIIcon = styled( Icon )<{ $position?: 'lead' | 'trail' }>`
