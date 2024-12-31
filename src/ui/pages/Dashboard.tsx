@@ -213,6 +213,12 @@ const Dashboard: React.FC = () => {
 			.catch((err) => console.log( 'Failed to fetch contacts:', err ))
 	}, [])
 
+	const [transferAmount, setTransferAmount] = useState( '' )
+	const handleTransferAmount = () => {
+		setTransferAmount( '' )
+		window.alert( `$${ transferAmount } successfully transferred` )
+	}
+
 	return (
 		<Page title="Dashboard" fullwidth={ true }>
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px] mb-[22px]">
@@ -262,14 +268,24 @@ const Dashboard: React.FC = () => {
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px]">
 				<Box title="Quick Transfer" className="basis-full mb-[22px] lg:basis-4/12 lg:mb-0">
 					<UserGroup data={ contacts } />
+
 					<Form>
 						<InputField
 							id="transfer-amount"
+							type="number"
 							label="Write Amount"
 							placeholder="525.50"
+							value={ transferAmount || '' }
 							solid={ true }
-							horizontal={ true } />
-						<Button label="Send" icon={{ name: 'paper-plane', position: 'trail' }} inline={ true } />
+							horizontal={ true }
+							onChange={ ( e ) => setTransferAmount( e.target.value ) } />
+
+						<Button
+							label="Send"
+							icon={{ name: 'paper-plane', position: 'trail' }}
+							inline={ true }
+							disabled={ !transferAmount.trim() }
+							onClick={ handleTransferAmount } />
 					</Form>
 				</Box>
 
