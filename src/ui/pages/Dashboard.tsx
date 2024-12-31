@@ -10,6 +10,9 @@ import { TransactionGroup } from "../components/TransactionGroup"
 import { BarChart } from "../components/BarChart"
 import { PieChart } from "../components/PieChart"
 import { LineChart } from "../components/LineChart"
+import { UserGroup } from "../components/UserGroup"
+import { InputField } from "../components/InputField"
+import { Button } from "../components/Button"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -19,6 +22,29 @@ const Card = styled(UICard)`
 
 		@media screen and (min-width: ${global.breakpoint}px) {
 			margin-left: 30px;
+		}
+	}
+`
+
+const Form = styled.div`
+	position: relative;
+	margin-top: 25px;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		margin-top: 27px;
+	}
+
+	button {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	input {
+		padding-right: 125px;
+
+		@media screen and (min-width: ${global.breakpoint}px) {
+			padding-right: 114px;
 		}
 	}
 `
@@ -35,6 +61,11 @@ const Dashboard: React.FC = () => {
 		label: string
 		value: number
 		color: string
+	}[]>([])
+	const [contacts, setContacts] = useState<{
+		name: string
+		role: string
+		image: string
 	}[]>([])
 
 	useEffect(() => {
@@ -175,7 +206,18 @@ const Dashboard: React.FC = () => {
 				setExpenses( expensesData )
 			})
 			.catch((err) => console.log( 'Failed to fetch transactions:', err ))
+
+		fetch( '/api/contacts' )
+			.then((res) => res.json())
+			.then((data: {name: string, role: string, image: string}[]) => setContacts(data))
+			.catch((err) => console.log( 'Failed to fetch contacts:', err ))
 	}, [])
+
+	const [transferAmount, setTransferAmount] = useState( '' )
+	const handleTransferAmount = () => {
+		setTransferAmount( '' )
+		window.alert( `$${ transferAmount } successfully transferred` )
+	}
 
 	return (
 		<Page title="Dashboard" fullwidth={ true }>
@@ -225,7 +267,26 @@ const Dashboard: React.FC = () => {
 
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px]">
 				<Box title="Quick Transfer" className="basis-full mb-[22px] lg:basis-4/12 lg:mb-0">
-					<p>Content goes here</p>
+					<UserGroup data={ contacts } />
+
+					<Form>
+						<InputField
+							id="transfer-amount"
+							type="number"
+							label="Write Amount"
+							placeholder="525.50"
+							value={ transferAmount || '' }
+							solid={ true }
+							horizontal={ true }
+							onChange={ ( e ) => setTransferAmount( e.target.value ) } />
+
+						<Button
+							label="Send"
+							icon={{ name: 'paper-plane', position: 'trail' }}
+							inline={ true }
+							disabled={ !transferAmount.trim() }
+							onClick={ handleTransferAmount } />
+					</Form>
 				</Box>
 
 				<Box title="Balance History" className="basis-full lg:basis-8/12">

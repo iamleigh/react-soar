@@ -132,5 +132,36 @@ export const handlers = [
 				label: 'Others'
 			},
 		])
+	}),
+
+	// Mock endpoint for saved contacts
+	http.get( '/api/contacts', () => {
+		return HttpResponse.json([
+			{
+				name: 'Livia Bator',
+				role: 'CEO',
+				image: 'https://i.pravatar.cc/300'
+			},
+			{
+				name: 'Randy Press',
+				role: 'Director',
+				image: 'https://i.pravatar.cc/300'
+			},
+			{
+				name: 'Workman',
+				role: 'Designer',
+				image: 'https://i.pravatar.cc/300'
+			},
+			{
+				name: 'Workman',
+				role: 'Designer',
+				image: 'https://i.pravatar.cc/300'
+			},
+			{
+				name: 'Workman',
+				role: 'Designer',
+				image: 'https://i.pravatar.cc/300'
+			}
+		])
 	})
 ]
