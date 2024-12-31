@@ -1,0 +1,55 @@
+@use "../_utils/utils" as *;
+
+/// -----------------------------------------------------------------------------
+/// 🟢 Page
+///
+/// Defines the main styles for the project page.
+///
+/// @author Leighton Quito (iamleigh.com)
+/// -----------------------------------------------------------------------------
+html,
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html {
+	font-size: var(--font-size, $font-size-base-md);
+}
+
+body {
+	background: $color-mono-light;
+	font-size: 1rem;
+	font-family: var(--font-family, $font-family);
+	line-height: 1.2rem;
+	letter-spacing: 0;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	&, * {
+		box-sizing: border-box;
+	}
+
+	@include bp(min-width, md) {
+		padding-left: var(--sidebar-width, $sidebar-width);
+	}
+
+	#root {
+		@include bp(min-width, md) {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}
+
+[hidden] {
+	display: none;
+}
+
+*:focus {
+	outline: none;
+}
