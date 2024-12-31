@@ -26,6 +26,29 @@ const Card = styled(UICard)`
 	}
 `
 
+const Form = styled.div`
+	position: relative;
+	margin-top: 25px;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		margin-top: 27px;
+	}
+
+	button {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	input {
+		padding-right: 125px;
+
+		@media screen and (min-width: ${global.breakpoint}px) {
+			padding-right: 114px;
+		}
+	}
+`
+
 const Dashboard: React.FC = () => {
 	const [cards, setCards] = useState<CardProps[]>([])
 	const [transactions, setTransactions] = useState<TransactionProps[]>([])
@@ -239,13 +262,15 @@ const Dashboard: React.FC = () => {
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px]">
 				<Box title="Quick Transfer" className="basis-full mb-[22px] lg:basis-4/12 lg:mb-0">
 					<UserGroup data={ contacts } />
-					<InputField
-						id="transfer-amount"
-						label="Write Amount"
-						placeholder="525.50"
-						solid={ true }
-						horizontal={ true } />
-					<Button label="Send" icon={{ name: 'paper-plane', position: 'trail' }} inline={ true } />
+					<Form>
+						<InputField
+							id="transfer-amount"
+							label="Write Amount"
+							placeholder="525.50"
+							solid={ true }
+							horizontal={ true } />
+						<Button label="Send" icon={{ name: 'paper-plane', position: 'trail' }} inline={ true } />
+					</Form>
 				</Box>
 
 				<Box title="Balance History" className="basis-full lg:basis-8/12">
