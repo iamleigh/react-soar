@@ -11,6 +11,8 @@ import { BarChart } from "../components/BarChart"
 import { PieChart } from "../components/PieChart"
 import { LineChart } from "../components/LineChart"
 import { UserGroup } from "../components/UserGroup"
+import { InputField } from "../components/InputField"
+import { Button } from "../components/Button"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -237,6 +239,13 @@ const Dashboard: React.FC = () => {
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px]">
 				<Box title="Quick Transfer" className="basis-full mb-[22px] lg:basis-4/12 lg:mb-0">
 					<UserGroup data={ contacts } />
+					<InputField
+						id="transfer-amount"
+						label="Write Amount"
+						placeholder="525.50"
+						solid={ true }
+						horizontal={ true } />
+					<Button label="Send" icon={{ name: 'paper-plane', position: 'trail' }} inline={ true } />
 				</Box>
 
 				<Box title="Balance History" className="basis-full lg:basis-8/12">
