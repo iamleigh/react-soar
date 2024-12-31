@@ -9,14 +9,15 @@ export const handlers = [
 			email: 'charlenereed@gmail.com',
 			username: 'Charlene Reed',
 			password: '1234567890@',
-			birthday: '',
+			birthday: '25 January 1990',
 			address: {
 				present: 'San Jose, California, USA',
 				permanent: 'San Jose, California, USA'
 			},
 			city: 'San Jose',
 			zip: '45962',
-			country: 'USA'
+			country: 'USA',
+			avatar: 'avatar.png'
 		})
 	}),
 

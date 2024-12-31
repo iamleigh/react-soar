@@ -11,7 +11,7 @@ const UIInput = styled.input<{ $solid?: boolean }>`
 	border: 1px solid ${ props => props.$solid ? 'transparent' : '#DFEAF2' };
 	border-radius: ${ props => props.$solid ? 50 : 15 }px;
 	background: ${ props => props.$solid ? '#EDF1F7' : color.mono.light };
-	color: ${ props => props.$solid ? color.primary.dark : color.mono.dark };
+	color: ${ props => props.$solid ? color.primary.dark : color.secondary.dark };
 	font-size: 12px;
 	line-height: 15px;
 	transition: ${ global.transition };

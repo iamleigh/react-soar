@@ -15,16 +15,18 @@ const Container = styled.div<{ $horizontal?: boolean }>`
 	}
 
 	label {
-		flex: 0 0 auto;
-		margin-right: 25px;
+		${ props => props.$horizontal && 'flex: 0 0 auto;' }
+		${ props => props.$horizontal && 'margin-right: 25px;' }
+		${ props => !props.$horizontal && 'margin-bottom: 9px;' }
 
 		@media screen and (min-width: ${global.breakpoint}px) {
-			margin-right: 27px;
+			${ props => props.$horizontal && 'margin-right: 27px;' }
+			${ props => !props.$horizontal && 'margin-bottom: 11px;' }
 		}
 	}
 `
 
-interface InputFieldProps {
+interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	id: string
 	label: string
 	placeholder?: string
@@ -43,10 +45,11 @@ export const InputField: React.FC<InputFieldProps> = ({
 	type = 'text',
 	onChange,
 	solid = false,
-	horizontal = false
+	horizontal = false,
+	...props
 }) => {
 	return (
-		<Container $horizontal={ horizontal }>
+		<Container $horizontal={ horizontal } { ...props }>
 			<Label htmlFor={ id } value={ label } solid={ solid } />
 			<Input id={ id } type={ type } placeholder={ placeholder } value={ value } onChange={ onChange } solid={ solid } />
 		</Container>

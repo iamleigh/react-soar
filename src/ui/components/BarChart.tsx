@@ -82,7 +82,11 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 		// Update bars width on window resize
 		const handleResize = () => {
 			setIsLoading( true )
-			window.innerWidth > breakpoint ? setBarWidth( 15 ) : setBarWidth( 7 )
+			if ( window.innerWidth > breakpoint ) {
+				setBarWidth( 15 )
+			} else {
+				setBarWidth( 7 )
+			}
 
 			// Debounce: Reset `isLoading` after resize stops
 			clearTimeout( resizeTimeout )
@@ -101,7 +105,7 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 		}
 	}, [])
 
-	const options: ChartOptions<'bar'> = {
+	const options: ChartOptions<'bar'> & { plugins: { legendMargin?: { margin: number } } } = {
 		responsive: true,
 		maintainAspectRatio: false,
 		scales: {
@@ -117,7 +121,7 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 					font: {
 						size: 13
 					},
-					align: 'center' as 'center'
+					align: 'center' as const
 				}
 			},
 			y: {
@@ -130,7 +134,7 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 					font: {
 						size: 13
 					},
-					align: 'center' as 'center'
+					align: 'center' as const
 				}
 			}
 		},
@@ -145,8 +149,8 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 			legendMargin: {
 				margin: 30
 			},
-			datalabels: false as unknown as Record<string, any>
-		} as any,
+			datalabels: false as unknown as Record<string, unknown>
+		},
 	}
 
 	const setDatasets = datasets.map( ( dataset ) => ({
