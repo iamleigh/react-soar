@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { global, color } from '../../utils/tokens'
-import { Chart as ChartJS, registerables } from 'chart.js'
+import { Chart as ChartJS, ScriptableContext, registerables } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 
 ChartJS.register( ...registerables )
@@ -59,7 +59,7 @@ export const LineChart: React.FC = () => {
 					font: {
 						size: 13
 					},
-					align: 'start' as 'start'
+					align: 'start' as const
 				}
 			},
 			y: {
@@ -75,7 +75,7 @@ export const LineChart: React.FC = () => {
 					font: {
 						size: 14
 					},
-					align: 'center' as 'center'
+					align: 'center' as const
 				}
 			}
 		},
@@ -92,7 +92,7 @@ export const LineChart: React.FC = () => {
 		datasets: [{
 			data: [9203, 1029, 3858, 10923, 8293, 4893, 2093, 9802, 4903, 6402, 9784, 9892],
 			borderColor: '#1814F3',
-			backgroundColor: ( context: any ) => {
+			backgroundColor: ( context: ScriptableContext<'line'> ) => {
 				const colors = [
 					'rgba(45, 96, 255, 0.5)',
 					'rgba(45, 96, 255, 0)'

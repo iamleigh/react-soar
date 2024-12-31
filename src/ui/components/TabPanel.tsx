@@ -11,7 +11,7 @@ const Container = styled.div<{ $isHidden?: boolean }>`
 	}
 `
 
-interface TabPanelProps extends React.PropsWithChildren<{}> {
+interface TabPanelProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 	id: string
 	selected?: boolean
 }

@@ -30,7 +30,7 @@ interface PieChartProps {
 }
 
 export const PieChart: React.FC<PieChartProps> = ({ datasets }) => {
-	let getLabels: string[] = [],
+	const getLabels: string[] = [],
 		getValues: number[] = [],
 		getColors: string[] = []
 
@@ -43,10 +43,10 @@ export const PieChart: React.FC<PieChartProps> = ({ datasets }) => {
 	const options = {
 		elements: {
 			arc: {
-				borderAlign: 'inner' as 'inner',
+				borderAlign: 'inner' as const,
 				borderWidth: 5,
 				borderColor: '#fff',
-				borderJoinStyle: 'miter' as 'miter'
+				borderJoinStyle: 'miter' as const
 			}
 		},
 		plugins: {
@@ -60,10 +60,10 @@ export const PieChart: React.FC<PieChartProps> = ({ datasets }) => {
 				color: '#ffffff',
 				font: {
 					size: 13,
-					weight: 'bold' as 'bold',
+					weight: 'bold' as const,
 				},
-				textAlign: 'center' as 'center',
-				anchor: 'center' as 'center',
+				textAlign: 'center' as const,
+				anchor: 'center' as const,
 				formatter: ( value: number, context: { chart: ChartJS, dataIndex: number } ) => {
 					const label = context.chart.data.labels?.[ context.dataIndex ]
 					return `${ value }%\n${ label }`
