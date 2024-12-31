@@ -42,7 +42,7 @@ export const Tabs: React.FC<TabsProps> = ({ id, title, datasets }) => {
 			{ title && id && <Title id={ id }>{ title }</Title> }
 
 			<ButtonGroup
-				aria-role="tablist"
+				role="tablist"
 				{ ...( title && id && { 'aria-labelledby': id } ) }>
 				{ datasets.map( ( data, index ) => {
 					return (
