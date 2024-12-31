@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { global } from '../../utils/tokens'
+import { global, color } from '../../utils/tokens'
 import { Chart as ChartJS, ChartOptions, Plugin, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
@@ -31,6 +31,10 @@ const Container = styled.div`
 
 	@media screen and (min-width: ${global.breakpoint}px) {
 		max-height: 260px;
+	}
+
+	canvas {
+		width: 100%;
 	}
 `
 
@@ -99,7 +103,37 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 
 	const options: ChartOptions<'bar'> = {
 		responsive: true,
-		maintainAspectRatio: true,
+		maintainAspectRatio: false,
+		scales: {
+			x: {
+				border: {
+					display: false
+				},
+				grid: {
+					display: false
+				},
+				ticks: {
+					color: color.secondary.dark,
+					font: {
+						size: 13
+					},
+					align: 'center' as 'center'
+				}
+			},
+			y: {
+				beginAtZero: true,
+				grid: {
+					color: '#F3F3F5'
+				},
+				ticks: {
+					color: color.secondary.dark,
+					font: {
+						size: 13
+					},
+					align: 'center' as 'center'
+				}
+			}
+		},
 		plugins: {
 			legend: {
 				align: 'end',
@@ -110,7 +144,8 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 			},
 			legendMargin: {
 				margin: 30
-			}
+			},
+			datalabels: false as unknown as Record<string, any>
 		} as any,
 	}
 

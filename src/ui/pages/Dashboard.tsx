@@ -9,6 +9,7 @@ import { Transaction, TransactionProps } from "../components/Transaction"
 import { TransactionGroup } from "../components/TransactionGroup"
 import { BarChart } from "../components/BarChart"
 import { PieChart } from "../components/PieChart"
+import { LineChart } from "../components/LineChart"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -45,7 +46,16 @@ const Dashboard: React.FC = () => {
 		fetch( '/api/transactions' )
 			.then((res) => res.json())
 			.then((data) => {
-				const latestTransactions = data.slice(-3).reverse()
+				const currentDate = new Date()
+
+				// Filter out transactions with future dates
+				const validTransactions = data.filter( ( transaction: TransactionProps ) => {
+					const transactionDate = new Date( transaction.date )
+					return transactionDate <= currentDate
+				})
+
+				// Sort transactions by date from newest to oldest
+				const latestTransactions = validTransactions.slice(-3).reverse()
 				setTransactions(latestTransactions)
 
 				// Get the last 7 days, including today
@@ -219,7 +229,7 @@ const Dashboard: React.FC = () => {
 				</Box>
 
 				<Box title="Balance History" className="basis-full lg:basis-8/12">
-					<p>Content goes here</p>
+					<LineChart />
 				</Box>
 			</div>
 		</Page>
