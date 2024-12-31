@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import { global } from '../../utils/tokens'
 import { Chart as ChartJS, ChartOptions, Plugin, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 
@@ -19,6 +21,18 @@ const legendMargin: Plugin = {
 }
 
 ChartJS.register( ...registerables, legendMargin )
+
+const Container = styled.div`
+	width: 100%;
+	height: 100%;
+	max-height: 220px;
+	display: flex;
+	justify-content: center;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		max-height: 260px;
+	}
+`
 
 const getWeekLabels = () => {
 	const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -114,5 +128,9 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 		datasets: setDatasets,
 	}
 
-	return isLoading ? 'loading data' : <Bar options={ options } data={ data } />
+	return isLoading ? 'loading data' : (
+		<Container>
+			<Bar options={ options } data={ data } />
+		</Container>
+	)
 }
