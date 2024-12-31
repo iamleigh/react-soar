@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
+import { global } from '../../utils/tokens'
 
 const Container = styled.div<{ $isHidden?: boolean }>`
 	${ props => props.$isHidden && 'display: none;' }
