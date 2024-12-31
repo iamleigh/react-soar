@@ -10,6 +10,7 @@ import { TransactionGroup } from "../components/TransactionGroup"
 import { BarChart } from "../components/BarChart"
 import { PieChart } from "../components/PieChart"
 import { LineChart } from "../components/LineChart"
+import { UserGroup } from "../components/UserGroup"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -35,6 +36,11 @@ const Dashboard: React.FC = () => {
 		label: string
 		value: number
 		color: string
+	}[]>([])
+	const [contacts, setContacts] = useState<{
+		name: string
+		role: string
+		image: string
 	}[]>([])
 
 	useEffect(() => {
@@ -175,6 +181,11 @@ const Dashboard: React.FC = () => {
 				setExpenses( expensesData )
 			})
 			.catch((err) => console.log( 'Failed to fetch transactions:', err ))
+
+		fetch( '/api/contacts' )
+			.then((res) => res.json())
+			.then((data: {name: string, role: string, image: string}[]) => setContacts(data))
+			.catch((err) => console.log( 'Failed to fetch contacts:', err ))
 	}, [])
 
 	return (
@@ -225,7 +236,7 @@ const Dashboard: React.FC = () => {
 
 			<div className="flex flex-col lg:flex-row lg:space-x-[30px]">
 				<Box title="Quick Transfer" className="basis-full mb-[22px] lg:basis-4/12 lg:mb-0">
-					<p>Content goes here</p>
+					<UserGroup data={ contacts } />
 				</Box>
 
 				<Box title="Balance History" className="basis-full lg:basis-8/12">
