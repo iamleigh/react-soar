@@ -39,7 +39,7 @@ jobs:
         env:
           SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
         run: |
-          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+          npx eslint . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif || echo "ESLint run failed"
         continue-on-error: true
 
       - name: Upload analysis results to GitHub
