@@ -7,10 +7,6 @@ import "./assets/scss/soaricons.scss";
 import App from './App.tsx'
 
 async function enableMocking() {
-	if ( 'development' !== process.env.NODE_ENV ) {
-		return;
-	}
-
 	const { worker } = await import( './mocks/browser' )
 
 	// `worker.start()` returns a Promise that resolves
