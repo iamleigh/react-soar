@@ -4,9 +4,10 @@ import { global, color } from '../../utils/tokens'
 
 const UIInput = styled.input<{ $solid?: boolean }>`
 	width: 100%;
+	height: 40px;
 	display: block;
 	margin: 0;
-	padding: 12px 14px 11px;
+	padding: 6px 14px 11px;
 	border: 1px solid ${ props => props.$solid ? 'transparent' : '#DFEAF2' };
 	border-radius: ${ props => props.$solid ? 50 : 15 }px;
 	background: ${ props => props.$solid ? '#EDF1F7' : color.mono.light };
@@ -16,7 +17,8 @@ const UIInput = styled.input<{ $solid?: boolean }>`
 	transition: ${ global.transition };
 
 	@media screen and (min-width: ${global.breakpoint}px) {
-		padding: ${ props => props.$solid ? '14px 29px' : '15px 19px' };
+		height: 50px;
+		padding: 6px ${ props => props.$solid ? 29 : 19 }px;
 		font-size: ${ props => props.$solid ? 15 : 16 }px;
 		line-height: ${ props => props.$solid ? 18 : 20 }px;
 	}
