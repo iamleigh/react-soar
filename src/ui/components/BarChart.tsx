@@ -150,7 +150,7 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 				margin: 30
 			},
 			datalabels: false as unknown as Record<string, any>
-		} as any,
+		},
 	}
 
 	const setDatasets = datasets.map( ( dataset ) => ({
