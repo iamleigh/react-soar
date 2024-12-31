@@ -8,6 +8,7 @@ import { CardGroup } from "../components/CardGroup"
 import { Transaction, TransactionProps } from "../components/Transaction"
 import { TransactionGroup } from "../components/TransactionGroup"
 import { BarChart } from "../components/BarChart"
+import { PieChart } from "../components/PieChart"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -25,9 +26,14 @@ const Dashboard: React.FC = () => {
 	const [cards, setCards] = useState<CardProps[]>([])
 	const [transactions, setTransactions] = useState<TransactionProps[]>([])
 	const [activity, setActivity] = useState<{
-		label: string,
-		data: number[],
+		label: string
+		data: number[]
 		backgroundColor: string
+	}[]>([])
+	const [expenses, setExpenses] = useState<{
+		label: string
+		value: number
+		color: string
 	}[]>([])
 
 	useEffect(() => {
@@ -85,6 +91,78 @@ const Dashboard: React.FC = () => {
 				]
 
 				setActivity( activityData )
+
+				// Prepare expenses data for PieChart
+				const categoryData: { [key: string]: number } = {}
+
+				// Sum up absolute values of negative transactions by category
+				data.forEach( ( transaction: TransactionProps ) => {
+					if ( transaction.amount < 0 ) {
+						// Categorize negative amounts
+						const category = transaction.category || 'others'
+						categoryData[category] = ( categoryData[category] || 0 ) + Math.abs( transaction.amount )
+					}
+				} )
+
+				// Calculate the total sum of all categories
+				const totalExpenses = Object.values( categoryData ).reduce( ( sum, value ) => sum + value, 0 )
+
+				const getExpenseLabel = ( category: string ) => {
+					let assignedLabel
+
+					switch ( category ) {
+						case 'bill':
+							assignedLabel = 'Bill Expense'
+							break
+
+						case 'entertainment':
+							assignedLabel = 'Entertainment'
+							break
+
+						case 'investment':
+							assignedLabel = 'Investment'
+							break
+
+						case 'other':
+							assignedLabel = 'Others'
+							break
+					}
+
+					return assignedLabel
+				}
+
+				const getExpenseColor = ( category: string ) => {
+					let assignedColor;
+
+					switch ( category ) {
+						case 'investment':
+							assignedColor = color.primary.base
+							break
+
+						case 'bill':
+							assignedColor = '#FC7900'
+							break
+
+						case 'entertainment':
+							assignedColor = color.primary.dark
+							break
+
+						default:
+							assignedColor = '#232323'
+							break
+					}
+
+					return assignedColor;
+				}
+
+				// Convert categoryData into PieChart format with percentages
+				const expensesData = Object.keys( categoryData ).map(( category ) => ({
+					label: getExpenseLabel( category ),
+					value: parseInt( ( ( categoryData[category] / totalExpenses ) * 100 ).toFixed( 0 ) ),
+					color: getExpenseColor( category )
+				}))
+
+				setExpenses( expensesData )
 			})
 			.catch((err) => console.log( 'Failed to fetch transactions:', err ))
 	}, [])
@@ -131,7 +209,7 @@ const Dashboard: React.FC = () => {
 				</Box>
 
 				<Box title="Expense Statistics" className="basis-full lg:basis-4/12">
-					<p>Content goes here</p>
+					{ expenses.length > 0 && <PieChart datasets={ expenses } /> }
 				</Box>
 			</div>
 
