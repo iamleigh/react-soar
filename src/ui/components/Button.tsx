@@ -4,6 +4,7 @@ import { global, color } from '../../utils/tokens'
 import { Icon } from './Icon'
 
 const UIButton = styled.button<{ $inline?: boolean }>`
+	cursor: pointer;
 	width: ${ props => props.$inline ? 'auto' : '100%' };
 	min-width: ${ props => props.$inline ? '100px' : '190px' };
 	height: 40px;
