@@ -9,10 +9,10 @@ const Container = styled.div`
 	align-items: flex-start;
 `
 
-const CardGroup: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+const CardGroup: React.FC<React.HtmlHTMLAttributes<HTMLDivElement>> = ({ ...props }) => {
 	return (
 		<Container>
-			{ children }
+			{ props.children }
 		</Container>
 	)
 }

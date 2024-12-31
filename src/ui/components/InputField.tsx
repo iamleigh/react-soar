@@ -26,7 +26,7 @@ const Container = styled.div<{ $horizontal?: boolean }>`
 	}
 `
 
-interface InputFieldProps extends React.PropsWithChildren<{}> {
+interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	id: string
 	label: string
 	placeholder?: string
