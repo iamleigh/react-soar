@@ -9,6 +9,7 @@ import { Transaction, TransactionProps } from "../components/Transaction"
 import { TransactionGroup } from "../components/TransactionGroup"
 import { BarChart } from "../components/BarChart"
 import { PieChart } from "../components/PieChart"
+import { LineChart } from "../components/LineChart"
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -219,7 +220,7 @@ const Dashboard: React.FC = () => {
 				</Box>
 
 				<Box title="Balance History" className="basis-full lg:basis-8/12">
-					<p>Content goes here</p>
+					<LineChart />
 				</Box>
 			</div>
 		</Page>
