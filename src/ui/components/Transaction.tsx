@@ -93,7 +93,8 @@ export interface TransactionProps {
 	date: string,
 	amount: number,
 	description: string,
-	source?: string
+	source?: string,
+	category?: string
 }
 
 export const Transaction: React.FC<TransactionProps> = ({
