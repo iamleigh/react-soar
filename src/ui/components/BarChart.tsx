@@ -110,7 +110,8 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 			},
 			legendMargin: {
 				margin: 30
-			}
+			},
+			datalabels: false as unknown as Record<string, any>
 		} as any,
 	}
 
