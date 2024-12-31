@@ -46,7 +46,16 @@ const Dashboard: React.FC = () => {
 		fetch( '/api/transactions' )
 			.then((res) => res.json())
 			.then((data) => {
-				const latestTransactions = data.slice(-3).reverse()
+				const currentDate = new Date()
+
+				// Filter out transactions with future dates
+				const validTransactions = data.filter( ( transaction: TransactionProps ) => {
+					const transactionDate = new Date( transaction.date )
+					return transactionDate <= currentDate
+				})
+
+				// Sort transactions by date from newest to oldest
+				const latestTransactions = validTransactions.slice(-3).reverse()
 				setTransactions(latestTransactions)
 
 				// Get the last 7 days, including today
