@@ -23,8 +23,10 @@ const UIButton = styled.button<{ $inline?: boolean }>`
 	transition: ${ global.transition };
 
 	@media screen and (min-width: ${global.breakpoint}px) {
+		${ props => !props.$inline && 'width: auto;' }
 		height: 50px;
 		padding: 6px ${ props => props.$inline ? '24px' : '12px' };
+		font-size: ${ props => props.$inline ? 16 : 18 }px;
 	}
 
 	&:hover,

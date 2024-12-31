@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { global, color, border } from "../../utils/tokens"
 import { Page } from "../layouts/Page"
 import { Tabs } from "../containers/Tabs"
+import { ProfileSettings } from "../layouts/ProfileSettings"
 
 const Container = styled.div`
 	padding: 20px;
@@ -15,34 +16,42 @@ const Container = styled.div`
 	}
 `
 
+const ComingSoon = styled.div`
+	width: 100%;
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: ${ color.secondary.light };
+`
+
+const SoonTab: React.FC<{ title?: string }> = ({ title }) => {
+	return (
+		<ComingSoon>
+			<div style={{ textAlign: 'center' }}>
+				{ title && <p style={{ marginBottom: 10, fontWeight: '600' }}>{ title }</p> }
+				<p>Coming Soon</p>
+			</div>
+		</ComingSoon>
+	)
+}
+
 const Settings: React.FC = () => {
-	const editProfile = (
-		<p>Edit Profile content goes here</p>
-	)
-
-	const preferences = (
-		<p>Preferences content goes here</p>
-	)
-
-	const security = (
-		<p>Security content goes here</p>
-	)
-
 	const tabs = [
 		{
 			id: 'edit-profile',
 			label: 'Edit Profile',
-			content: editProfile
+			content: <ProfileSettings />
 		},
 		{
 			id: 'preferences',
 			label: 'Preferences',
-			content: preferences
+			content: <SoonTab title="Preferences" />
 		},
 		{
 			id: 'security',
 			label: 'Security',
-			content: security
+			content: <SoonTab title="Security" />
 		},
 	]
 

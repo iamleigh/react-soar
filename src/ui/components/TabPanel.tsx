@@ -7,7 +7,7 @@ const Container = styled.div<{ $isHidden?: boolean }>`
 	padding: 45px 0;
 
 	@media screen and (min-width: ${global.breakpoint}px) {
-		padding: 40px 0;
+		padding: 40px 30px;
 	}
 `
 
