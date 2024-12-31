@@ -83,7 +83,7 @@ export const LineChart: React.FC = () => {
 			legend: {
 				display: false
 			},
-			datalabels: false as unknown as Record<string, any>
+			datalabels: false as unknown as Record<string, unknown>
 		}
 	}
 
