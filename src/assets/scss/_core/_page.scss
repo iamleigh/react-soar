@@ -38,6 +38,8 @@ body {
 	}
 
 	#root {
+		position: relative;
+
 		@include bp(min-width, md) {
 			min-height: 100vh;
 			display: flex;

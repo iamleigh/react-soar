@@ -19,6 +19,7 @@ const Container = styled.aside<{ $open?: boolean }>`
 	box-shadow: 1px 0 #E6EFF5;
 
 	@media screen and (min-width: ${global.breakpoint}px) {
+		left: -${global.sidebar}px;
 		display: block;
 		padding: 30px;
 	}
