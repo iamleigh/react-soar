@@ -20,6 +20,9 @@ export const color = {
 	},
 	green: {
 		base: '#16DBCC',
-		light: '#DCFAF8',
+		light: '#DCFAF8'
+	},
+	orange: {
+		base: '#FC7900'
 	}
 }

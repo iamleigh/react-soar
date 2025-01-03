@@ -29,7 +29,7 @@ const Image = styled.img<{ $alone?: boolean }>`
 const Caption = styled.span<{ $light?: boolean, $small?: boolean }>`
 	display: block;
 	margin-top: ${ props => props.$small ? 1 : 12 }px;
-	color: ${ props => props.$light ? 'var(--color-secondary-dark)' : 'var(--color-mono-dark)' };
+	color: ${ props => props.$light ? color.secondary.dark : color.mono.dark };
 	font-size: 12px;
 	line-height: 15px;
 	transition: ${ global.transition };

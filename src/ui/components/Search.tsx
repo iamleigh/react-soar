@@ -1,6 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import { Icon as UIIcon } from "./Icon"
+import React from 'react'
+import styled from 'styled-components'
+import { global, color } from '../../utils/tokens'
+import { Icon as UIIcon } from './Icon'
 
 const Container = styled.div`
 	width: 100%;
@@ -11,13 +12,13 @@ const Input = styled.input`
 	width: 100%;
 	display: block;
 	padding: 11px 17px 11px 44px;
-	border: 1px solid var(--color-secondary-light);
+	border: 1px solid ${color.secondary.light};
 	border-radius: 40px;
-	background: var(--color-secondary-light);
-	color: var(--color-secondary);
+	background: ${color.secondary.light};
+	color: ${color.secondary.base};
 	font-size: 13px;
 	line-height: 16px;
-	transition: var(--transition-smooth);
+	transition: ${global.transition};
 
 	@media screen and (min-width: 835px) {
 		padding: 15px 24px 15px 59px;
@@ -26,16 +27,16 @@ const Input = styled.input`
 	}
 
 	&::placeholder {
-		color: var(--color-secondary);
+		color: ${color.secondary.base};
 	}
 
 	&:hover,
 	&:focus {
-		border-color: var(--color-secondary);
+		border-color: ${color.secondary.base};
 	}
 
 	&:focus {
-		background: var(--color-mono-light);
+		background: ${color.mono.light};
 	}
 `
 
@@ -44,7 +45,7 @@ const Icon = styled(UIIcon)`
 	top: 50%;
 	left: 18px;
 	transform: translateY(-50%);
-	color: var(--color-secondary);
+	color: ${color.secondary.base};
 	font-size: 15px;
 
 	@media screen and (min-width: 835px) {
