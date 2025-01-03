@@ -83,6 +83,7 @@ const Title = styled.h1`
 	margin: 0;
 	padding: 0;
 	color: ${color.primary.dark};
+	font-weight: 600;
 	font-size: 20px;
 	line-height: 24px;
 
