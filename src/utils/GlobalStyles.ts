@@ -68,6 +68,7 @@ const GlobalStyles = createGlobalStyle`
 
 	button {
 		cursor: pointer;
+		background: transparent;
 	}
 
 	[hidden] {
