@@ -17,7 +17,7 @@ export const handlers = [
 			city: 'San Jose',
 			zip: '45962',
 			country: 'USA',
-			avatar: 'avatar.png'
+			avatar: 'uploads/avatar.png'
 		})
 	}),
 
