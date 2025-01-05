@@ -31,7 +31,7 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	placeholder?: string
 	value: string
-	type: 'text' | 'number' | 'email'
+	type: 'text' | 'number' | 'email' | 'password'
 	onChange?: ( e: React.ChangeEvent<HTMLInputElement> ) => void
 	solid?: boolean
 	horizontal?: boolean
