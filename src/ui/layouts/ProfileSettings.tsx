@@ -170,7 +170,7 @@ export const ProfileSettings = () => {
 
 				<Row>
 					<InputField id="email" label="Email" value={ email } type="text" onChange={( e ) => setEmail( e.target.value )} />
-					<InputField id="password" label="Password" value={ password } type="text" onChange={( e ) => setPassword( e.target.value )} />
+					<InputField id="password" label="Password" value={ password } type="password" onChange={( e ) => setPassword( e.target.value )} />
 				</Row>
 
 				<Row>
