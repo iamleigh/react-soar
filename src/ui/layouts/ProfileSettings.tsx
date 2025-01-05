@@ -4,7 +4,6 @@ import { global, color } from '../../utils/tokens'
 import { Icon } from '../components/Icon'
 import { InputField as UIInputField } from '../components/InputField'
 import { Button } from '../components/Button'
-import mockavatar from '../../assets/images/avatar-empty.png'
 
 const Form = styled.div`
 	@media screen and (min-width: ${global.breakpoint}px) {
@@ -107,7 +106,7 @@ const Save = styled(Button)`
 `
 
 export const ProfileSettings = () => {
-	const [avatar, setAvatar] = useState( mockavatar )
+	const [avatar, setAvatar] = useState( '' )
 	const [name, setName] = useState( '' )
 	const [username, setUsername] = useState( '' )
 	const [email, setEmail] = useState( '' )
@@ -170,7 +169,7 @@ export const ProfileSettings = () => {
 
 				<Row>
 					<InputField id="email" label="Email" value={ email } type="text" onChange={( e ) => setEmail( e.target.value )} />
-					<InputField id="password" label="Password" value={ password } type="password" onChange={( e ) => setPassword( e.target.value )} />
+					<InputField id="password" label="Password" value={ password } type="text" onChange={( e ) => setPassword( e.target.value )} />
 				</Row>
 
 				<Row>

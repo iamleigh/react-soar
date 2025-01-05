@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { global, color } from "../../utils/tokens"
+import unknown from '../../assets/images/avatar-empty.png'
 
 const Container = styled.div<{ $isButton?: boolean, $isCurrent?: boolean }>`
 	display: block;
@@ -47,7 +48,7 @@ const Caption = styled.span<{ $light?: boolean, $small?: boolean }>`
 `
 
 type UserProps = {
-	image: string,
+	image?: string,
 	name?: string,
 	role?: string,
 	current?: boolean,
@@ -56,7 +57,9 @@ type UserProps = {
 
 const User: React.FC<UserProps> = ({ image, name, role, current = false, onClick }) => {
 	const isButton = 'function' === typeof onClick ? true : false
-	let element = <Image src={ image } alt="Profile picture" $alone />
+	const imageUrl = image && '' !== image ? image : unknown;
+
+	let element = <Image src={ imageUrl } alt="Profile picture" $alone />
 
 	if ( name || role ) {
 		element = (
@@ -68,7 +71,7 @@ const User: React.FC<UserProps> = ({ image, name, role, current = false, onClick
 				{ ...( isButton && { $isButton: true }) }
 				{ ...( current && { $isCurrent: current }) }
 				onClick={ onClick }>
-				<Image src={ image } alt={`Profile picture of ${ name }`} />
+				<Image src={ imageUrl } alt={`Profile picture of ${ name }`} />
 				{ name && <Caption>{ name }</Caption> }
 				{ role && <Caption $light $small>{ role }</Caption> }
 			</Container>

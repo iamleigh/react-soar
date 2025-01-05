@@ -4,7 +4,6 @@ import { global, color } from "../../utils/tokens"
 import { User } from "../components/User"
 import { Search as UISearch } from "../components/Search"
 import { ButtonIcon } from "../components/ButtonIcon"
-import unknown from "../../assets/images/avatar-empty.png"
 
 const tokens = {
 	header: {
@@ -116,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ title, sidebarFn, ...props }) => {
 				<Search />
 				<ButtonIcon icon="settings" label="Open Settings" />
 				<ButtonIcon icon="notification" label="Open Notification" />
-				<User image={unknown} />
+				<User />
 			</RightGroup>
 		</Container>
 	);
