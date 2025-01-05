@@ -72,6 +72,7 @@ const Title = styled.p`
 `
 
 const Amount = styled.td<{ $debit?: boolean }>`
+	width: 80px;
 	padding: 7px 0 19px;
 	border: 0;
 	color: ${ props => props.$debit ? '#FF4B4A' : '#41D4A8' };
