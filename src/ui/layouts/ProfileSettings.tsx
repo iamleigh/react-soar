@@ -4,6 +4,7 @@ import { global, color } from '../../utils/tokens'
 import { Icon } from '../components/Icon'
 import { InputField as UIInputField } from '../components/InputField'
 import { Button } from '../components/Button'
+import unknown from '../../assets/images/avatar-empty.png'
 
 const Form = styled.div`
 	@media screen and (min-width: ${global.breakpoint}px) {
@@ -106,7 +107,7 @@ const Save = styled(Button)`
 `
 
 export const ProfileSettings = () => {
-	const [avatar, setAvatar] = useState( '' )
+	const [avatar, setAvatar] = useState( unknown )
 	const [name, setName] = useState( '' )
 	const [username, setUsername] = useState( '' )
 	const [email, setEmail] = useState( '' )
