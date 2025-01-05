@@ -315,6 +315,7 @@ const Dashboard: React.FC = () => {
 								label="Write Amount"
 								placeholder="525.50"
 								value={ transferAmount || '' }
+								min={0}
 								solid={ true }
 								horizontal={ true }
 								onChange={ ( e ) => setTransferAmount( e.target.value ) } />
