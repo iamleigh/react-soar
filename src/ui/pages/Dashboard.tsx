@@ -290,13 +290,13 @@ const Dashboard: React.FC = () => {
 			</Row>
 
 			<Row>
-				<Col $size={ 4 }>
+				<Col $size={ 8 }>
 					<Box title="Weekly Activity" fullHeight={ true }>
 						{ activity.length > 0 && <BarChart datasets={ activity } /> }
 					</Box>
 				</Col>
 
-				<Col $size={ 8 }>
+				<Col $size={ 4 }>
 					<Box title="Expense Statistics" fullHeight={ true }>
 						{ expenses.length > 0 && <PieChart datasets={ expenses } /> }
 					</Box>
