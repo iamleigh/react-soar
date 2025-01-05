@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react"
-import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
-import { Page } from "../layouts/Page"
-import { Box } from "../components/Box"
-import { Card as UICard, CardProps } from "../components/Card"
-import { CardGroup } from "../components/CardGroup"
-import { Transaction, TransactionProps } from "../components/Transaction"
-import { TransactionGroup } from "../components/TransactionGroup"
-import { BarChart } from "../components/BarChart"
-import { PieChart } from "../components/PieChart"
-import { LineChart } from "../components/LineChart"
-import { UserGroup } from "../components/UserGroup"
-import { InputField } from "../components/InputField"
-import { Button } from "../components/Button"
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { global, color } from '../../utils/tokens'
+import { Page } from '../layouts/Page'
+import { Box } from '../components/Box'
+import { Card as UICard, CardProps } from '../components/Card'
+import { CardGroup } from '../components/CardGroup'
+import { Transaction, TransactionProps } from '../components/Transaction'
+import { TransactionGroup } from '../components/TransactionGroup'
+import { BarChart } from '../components/BarChart'
+import { PieChart } from '../components/PieChart'
+import { LineChart } from '../components/LineChart'
+import { UserGroup } from '../components/UserGroup'
+import { InputField } from '../components/InputField'
+import { Button } from '../components/Button'
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
