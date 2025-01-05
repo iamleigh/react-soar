@@ -56,12 +56,10 @@ const Icon = styled(UIIcon)`
 `
 
 const Label = styled.span`
-	overflow: hidden;
 	min-width: 1px;
 	flex: 1;
 	margin-left: 26px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	${global.text.truncate}
 `
 
 type NavItemProps = {

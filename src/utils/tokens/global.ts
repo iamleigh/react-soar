@@ -15,5 +15,8 @@ export const global = {
 			min: '@media screen and (min-width: 1001px)',
 			max: '@media screen and (max-width: 1000px)'
 		}
+	},
+	text: {
+		truncate: 'overflow: hidden; white-space: nowrap; text-overflow: ellipsis;'
 	}
 }

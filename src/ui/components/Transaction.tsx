@@ -34,9 +34,7 @@ const Details = styled.td`
 	}
 
 	p {
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
+		${global.text.truncate}
 	}
 `
 
