@@ -6,6 +6,7 @@ import { Logo as UILogo } from "../components/Logo"
 import { Nav as UINav } from "../components/Nav"
 
 const Container = styled.aside<{ $open?: boolean }>`
+	overflow-y: auto;
 	width: 100%;
 	max-width: 250px;
 	${props => !props.$open && 'display: none;'}
