@@ -6,14 +6,15 @@ import { Sidebar } from "../containers/Sidebar"
 import { Content as UIContent } from "../containers/Content"
 
 const Header = styled(UIHeader)`
-	@media screen and (min-width: ${global.breakpoint}px) {
+	${global.bp.tablet.min} {
 		flex: 0 0 auto;
 	}
 `
 
 const Content = styled(UIContent)`
-	@media screen and (min-width: ${global.breakpoint}px) {
+	${global.bp.tablet.min} {
 		flex: 1;
+		overflow-y: auto;
 	}
 `
 

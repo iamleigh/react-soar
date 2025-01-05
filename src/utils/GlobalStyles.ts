@@ -16,6 +16,14 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	/* Base Styles */
+	html,
+	body {
+		${global.bp.tablet.min} {
+			overflow: hidden;
+			height: 100%;
+		}
+	}
+
 	html {
 		font-size: ${font.size.base.sm};
 
@@ -49,7 +57,7 @@ const GlobalStyles = createGlobalStyle`
 			position: relative;
 
 			${global.bp.tablet.min} {
-				min-height: 100vh;
+				height: 100%;
 				display: flex;
 				flex-direction: column;
 			}
