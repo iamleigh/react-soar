@@ -27,11 +27,12 @@
 	"paths": {
 		"@/*": ["src/*"],
 		"@styles/*": ["./src/assets/scss/*"],
-		"@images/*": ["src/assets/images/*"],
-		"@components/*": ["src/ui/components/*"],
-		"@containers/*": ["src/ui/containers/*"],
-		"@layouts/*": ["src/ui/layouts/*"],
-		"@pages/*": ["src/ui/pages/*"],
+		"@image/*": ["src/assets/images/*"],
+		"@helper/*": ["src/utils/*"],
+		"@component/*": ["src/ui/components/*"],
+		"@container/*": ["src/ui/containers/*"],
+		"@layout/*": ["src/ui/layouts/*"],
+		"@page/*": ["src/ui/pages/*"],
 	}
   },
   "include": ["src"]
