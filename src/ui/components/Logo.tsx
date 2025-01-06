@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { color } from "../../utils/tokens";
+import { color } from "@helper/tokens";
 import { Icon as UIIcon } from "./Icon";
 
 const Container = styled.h1`

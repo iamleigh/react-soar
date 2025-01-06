@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { global } from "../../utils/tokens"
-import { Header as UIHeader } from "../containers/Header"
-import { Sidebar } from "../containers/Sidebar"
-import { Content as UIContent } from "../containers/Content"
+import { global } from "@helper/tokens"
+import { Header as UIHeader } from "@container/Header"
+import { Sidebar } from "@container/Sidebar"
+import { Content as UIContent } from "@container/Content"
 
 const Header = styled(UIHeader)`
-	@media screen and (min-width: ${global.breakpoint}px) {
+	${global.bp.tablet.min} {
 		flex: 0 0 auto;
 	}
 `
 
 const Content = styled(UIContent)`
-	@media screen and (min-width: ${global.breakpoint}px) {
+	${global.bp.tablet.min} {
 		flex: 1;
+		overflow-y: auto;
 	}
 `
 

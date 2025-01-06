@@ -1,10 +1,16 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color, border } from "../../utils/tokens"
+import { global, color, border } from "@helper/tokens"
 import { Link as UILink } from "react-router-dom"
 
-const Container = styled.section`
+const Container = styled.section<{ $fullHeight?: boolean }>`
 	display: block;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		${ props => props.$fullHeight && 'display: flex;' }
+		${ props => props.$fullHeight && 'flex-flow: column nowrap;' }
+		${ props => props.$fullHeight && 'height: 100%;' }
+	}
 `
 
 const Header = styled.div`
@@ -54,29 +60,34 @@ const Link = styled(UILink)`
 	}
 `
 
-const Body = styled.div<{ $boxed?: boolean }>`
+const Body = styled.div<{ $boxed?: boolean, $fullHeight?: boolean }>`
 	${props => props.$boxed && 'padding: 25px;'}
 	${props => props.$boxed && 'border-radius: ' + border.radius.lg + 'px;' }
 	${props => props.$boxed && 'background: ' + color.mono.light + ';'}
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		${ props => props.$fullHeight && 'flex: 1;' }
+	}
 `
 
 interface BoxProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
 	title: string
 	path?: string
 	boxed?: boolean
+	fullHeight?: boolean
 }
 
-const Box: React.FC<BoxProps> = ({ title, path, boxed = true, ...props }) => {
+const Box: React.FC<BoxProps> = ({ title, path, boxed = true, fullHeight = false, ...props }) => {
 	const uniqueId = `${title?.toLowerCase().replace(/\s+/g, '-')}-title`;
 
 	return (
-		<Container aria-labelledby={ uniqueId } { ...props }>
+		<Container aria-labelledby={ uniqueId } { ...props } $fullHeight={ fullHeight }>
 			<Header>
 				<Title id={ uniqueId }>{ title }</Title>
 				{ path && <Link to={ path }>See All</Link> }
 			</Header>
 
-			<Body $boxed={ boxed }>
+			<Body $boxed={ boxed } $fullHeight={ fullHeight }>
 				{ props.children }
 			</Body>
 		</Container>

@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color, border } from "../../utils/tokens"
-import { Page } from "../layouts/Page"
-import { Tabs } from "../containers/Tabs"
-import { ProfileSettings } from "../layouts/ProfileSettings"
+import { global, color, border } from "@helper/tokens"
+import { Page } from "@layout/Page"
+import { Tabs } from "@container/Tabs"
+import { ProfileSettings } from "@layout/ProfileSettings"
 
 const Container = styled.div`
 	padding: 20px;

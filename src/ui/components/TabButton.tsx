@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global, color, border } from '../../utils/tokens'
+import { global, color, border } from '@helper/tokens'
 
 const Button = styled.button`
 	position: relative;

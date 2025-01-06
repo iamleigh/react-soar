@@ -17,7 +17,7 @@ export const handlers = [
 			city: 'San Jose',
 			zip: '45962',
 			country: 'USA',
-			avatar: 'avatar.png'
+			avatar: 'uploads/avatar.png'
 		})
 	}),
 
@@ -104,8 +104,14 @@ export const handlers = [
 			// January 2025
 			{ source: 'bank', amount: -134, date: '2025-01-01', description: 'Water Service', category: 'bill' },
 			{ source: 'bank', amount: -253, date: '2025-01-01', description: 'Light Service', category: 'bill' },
-			{ source: 'transfer', amount: -261, date: '2025-01-01', description: 'Internet Service', category: 'bill' },
+			{ source: 'bank', amount: -261, date: '2025-01-01', description: 'Internet Service', category: 'bill' },
 			{ source: 'transfer', amount: 3492, date: '2025-01-02', description: 'Salary', category: 'income' },
+			{ source: 'card', amount: -1243, date: '2025-01-02', description: 'Hotel', category: 'other' },
+			{ source: 'paypal', amount: -987, date: '2025-01-02', description: 'Amazon', category: 'other' },
+			{ source: 'bank', amount: 765, date: '2025-01-03', description: 'Investments', category: 'investment' },
+			{ source: 'card', amount: -72, date: '2025-01-03', description: 'Apple One', category: 'bill' },
+			{ source: 'transfer', amount: 2873, date: '2025-01-03', description: 'Payment from Daniel Craig', category: 'income' },
+			{ source: 'paypal', amount: -654, date: '2025-01-03', description: 'Amazon', category: 'other' },
 		])
 	}),
 

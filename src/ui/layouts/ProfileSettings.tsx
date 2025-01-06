@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
-import { Icon } from '../components/Icon'
-import { InputField as UIInputField } from '../components/InputField'
-import { Button } from '../components/Button'
-import mockavatar from '../../assets/images/avatar-empty.png'
+import { global, color } from '@helper/tokens'
+import { Icon } from '@component/Icon'
+import { InputField as UIInputField } from '@component/InputField'
+import { Button } from '@component/Button'
+import unknown from '@image/avatar-empty.png'
 
 const Form = styled.div`
 	@media screen and (min-width: ${global.breakpoint}px) {
@@ -107,7 +107,7 @@ const Save = styled(Button)`
 `
 
 export const ProfileSettings = () => {
-	const [avatar, setAvatar] = useState( mockavatar )
+	const [avatar, setAvatar] = useState( unknown )
 	const [name, setName] = useState( '' )
 	const [username, setUsername] = useState( '' )
 	const [email, setEmail] = useState( '' )

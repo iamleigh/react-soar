@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
+import { global, color } from '@helper/tokens'
 import { Icon } from './Icon'
 
 const Container = styled.tr`
@@ -34,9 +34,7 @@ const Details = styled.td`
 	}
 
 	p {
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
+		${global.text.truncate}
 	}
 `
 
@@ -74,6 +72,7 @@ const Title = styled.p`
 `
 
 const Amount = styled.td<{ $debit?: boolean }>`
+	width: 80px;
 	padding: 7px 0 19px;
 	border: 0;
 	color: ${ props => props.$debit ? '#FF4B4A' : '#41D4A8' };

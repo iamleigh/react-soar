@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global } from '../../utils/tokens'
+import { global } from '@helper/tokens'
 import { Input } from './Input'
 import { Label } from './Label'
 
@@ -31,7 +31,9 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 	label: string
 	placeholder?: string
 	value: string
-	type: 'text' | 'number' | 'email'
+	type: 'text' | 'number' | 'email' | 'password'
+	min?: number
+	max?: number
 	onChange?: ( e: React.ChangeEvent<HTMLInputElement> ) => void
 	solid?: boolean
 	horizontal?: boolean
@@ -43,6 +45,8 @@ export const InputField: React.FC<InputFieldProps> = ({
 	placeholder,
 	value,
 	type = 'text',
+	min,
+	max,
 	onChange,
 	solid = false,
 	horizontal = false,
@@ -51,7 +55,14 @@ export const InputField: React.FC<InputFieldProps> = ({
 	return (
 		<Container $horizontal={ horizontal } { ...props }>
 			<Label htmlFor={ id } value={ label } solid={ solid } />
-			<Input id={ id } type={ type } placeholder={ placeholder } value={ value } onChange={ onChange } solid={ solid } />
+			<Input
+				id={ id }
+				type={ type }
+				placeholder={ placeholder }
+				value={ value }
+				{ ...( 'number' === type && { min: min }) }
+				{ ...( 'number' === type && { max: max }) }
+				onChange={ onChange } solid={ solid } />
 		</Container>
 	)
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
+import { global, color } from '@helper/tokens'
 import { Chart as ChartJS, ScriptableContext, registerables } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 
