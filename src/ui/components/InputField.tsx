@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global } from '../../utils/tokens'
+import { global } from '@helper/tokens'
 import { Input } from './Input'
 import { Label } from './Label'
 

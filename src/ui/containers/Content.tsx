@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
+import { global, color } from "@helper/tokens"
 
 const Container = styled.main<{ $fullwidth?: boolean }>`
 	padding: 25px;

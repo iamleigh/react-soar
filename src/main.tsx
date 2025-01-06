@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import "./assets/scss/soaricons.scss";
+import "@styles/soaricons.scss";
 import App from './App.tsx'
 
 async function enableMocking() {

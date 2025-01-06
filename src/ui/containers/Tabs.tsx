@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { TabButton } from '../components/TabButton'
-import { TabPanel } from '../components/TabPanel'
+import { TabButton } from '@component/TabButton'
+import { TabPanel } from '@component/TabPanel'
 
 const ButtonGroup = styled.div`
 	box-shadow: inset 0 -1px 0 #F4F5F7;

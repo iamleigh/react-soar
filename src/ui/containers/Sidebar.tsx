@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
-import { ButtonIcon } from "../components/ButtonIcon"
-import { Logo as UILogo } from "../components/Logo"
-import { Nav as UINav } from "../components/Nav"
+import { global, color } from "@helper/tokens"
+import { ButtonIcon } from "@component/ButtonIcon"
+import { Logo as UILogo } from "@component/Logo"
+import { Nav as UINav } from "@component/Nav"
 
 const Container = styled.aside<{ $open?: boolean }>`
 	overflow-y: auto;

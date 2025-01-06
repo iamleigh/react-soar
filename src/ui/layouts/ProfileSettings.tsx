@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
-import { Icon } from '../components/Icon'
-import { InputField as UIInputField } from '../components/InputField'
-import { Button } from '../components/Button'
-import unknown from '../../assets/images/avatar-empty.png'
+import { global, color } from '@helper/tokens'
+import { Icon } from '@component/Icon'
+import { InputField as UIInputField } from '@component/InputField'
+import { Button } from '@component/Button'
+import unknown from '@image/avatar-empty.png'
 
 const Form = styled.div`
 	@media screen and (min-width: ${global.breakpoint}px) {

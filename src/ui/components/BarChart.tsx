@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
+import { global, color } from '@helper/tokens'
 import { Chart as ChartJS, ChartOptions, Plugin, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 

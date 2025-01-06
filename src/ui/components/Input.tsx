@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global, color } from '../../utils/tokens'
+import { global, color } from '@helper/tokens'
 
 const UIInput = styled.input<{ $solid?: boolean }>`
 	width: 100%;

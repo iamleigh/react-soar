@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
-import { User } from "../components/User"
-import { Search as UISearch } from "../components/Search"
-import { ButtonIcon } from "../components/ButtonIcon"
+import { global, color } from "@helper/tokens"
+import { User } from "@component/User"
+import { Search as UISearch } from "@component/Search"
+import { ButtonIcon } from "@component/ButtonIcon"
 
 const tokens = {
 	header: {

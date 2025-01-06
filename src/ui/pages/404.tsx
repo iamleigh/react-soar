@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global, color, border } from '../../utils/tokens'
-import { Page } from '../layouts/Page'
+import { global, color, border } from '@helper/tokens'
+import { Page } from '@layout/Page'
 
 const Container = styled.div`
 	height: 100%;

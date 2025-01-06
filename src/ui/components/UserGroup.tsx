@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { global } from '../../utils/tokens'
+import { global } from '@helper/tokens'
 import { User } from './User'
 
 const List = styled.ul`
