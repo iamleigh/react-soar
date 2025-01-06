@@ -18,8 +18,13 @@ const Container = styled.div`
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+	padding: ${spacing.vertical.sm}px ${spacing.horizontal.sm}px;
 	background: ${color.secondary.light};
 	text-align: center;
+
+	${global.bp.tablet} {
+		padding: ${spacing.vertical.md}px ${spacing.horizontal.md}px;
+	}
 `
 
 const Spinner = styled.img`
