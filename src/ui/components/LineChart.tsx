@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { global, color } from '@helper/tokens'
 import { Chart as ChartJS, ScriptableContext, registerables } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import { Loader } from '@component/Loader'
 
 ChartJS.register( ...registerables )
 
@@ -23,6 +24,8 @@ const Container = styled.div`
 `
 
 export const LineChart: React.FC = () => {
+	const [isLoading, setIsLoading] = useState<boolean>( false )
+
 	const getMonths = () => {
 		const months = [
 			'Jan', 'Feb', 'Mar',
@@ -42,6 +45,30 @@ export const LineChart: React.FC = () => {
 
 		return lastMonths
 	}
+
+	useEffect( () => {
+		let resizeTimeout: NodeJS.Timeout
+
+		// Update pie width on window resize
+		const handleResize = () => {
+			setIsLoading( true )
+
+			// Debounce: Reset `isLoading` after resize stops
+			clearTimeout( resizeTimeout )
+
+			resizeTimeout = setTimeout( () => setIsLoading( false ), 300 )
+		}
+		window.addEventListener( 'resize', handleResize )
+
+		// Initial call to set pie width
+		handleResize()
+
+		// Cleanup on unmount
+		return () => {
+			window.removeEventListener( 'resize', handleResize )
+			clearTimeout( resizeTimeout )
+		}
+	}, []);
 
 	const options = {
 		responsive: true,
@@ -115,9 +142,11 @@ export const LineChart: React.FC = () => {
 		}]
 	}
 
-	return (
-		<Container>
-			<Line options={ options } data={ data } />
-		</Container>
-	)
+	return isLoading
+		? <Loader title="Preparing your data" />
+		: (
+			<Container>
+				<Line options={ options } data={ data } />
+			</Container>
+		)
 }
