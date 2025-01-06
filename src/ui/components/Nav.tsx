@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { NavItem } from "./NavItem"
+import { NavItem } from "@component/NavItem"
 
 const Container = styled.ul`
 	margin: 0;

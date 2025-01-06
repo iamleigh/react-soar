@@ -1,11 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
-import { ButtonIcon } from "../components/ButtonIcon"
-import { Logo as UILogo } from "../components/Logo"
-import { Nav as UINav } from "../components/Nav"
+import { global, color } from "@helper/tokens"
+import { ButtonIcon } from "@component/ButtonIcon"
+import { Logo as UILogo } from "@component/Logo"
+import { Nav as UINav } from "@component/Nav"
 
 const Container = styled.aside<{ $open?: boolean }>`
+	overflow-y: auto;
 	width: 100%;
 	max-width: 250px;
 	${props => !props.$open && 'display: none;'}
@@ -19,6 +20,7 @@ const Container = styled.aside<{ $open?: boolean }>`
 	box-shadow: 1px 0 #E6EFF5;
 
 	@media screen and (min-width: ${global.breakpoint}px) {
+		left: -${global.sidebar}px;
 		display: block;
 		padding: 30px;
 	}

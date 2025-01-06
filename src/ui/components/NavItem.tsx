@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { global, color, border } from "../../utils/tokens";
+import { global, color, border } from "@helper/tokens";
 import { NavLink } from "react-router-dom";
 import { Icon as UIIcon } from "./Icon";
 
@@ -56,12 +56,10 @@ const Icon = styled(UIIcon)`
 `
 
 const Label = styled.span`
-	overflow: hidden;
 	min-width: 1px;
 	flex: 1;
 	margin-left: 26px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	${global.text.truncate}
 `
 
 type NavItemProps = {

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react"
-import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
-import { Page } from "../layouts/Page"
-import { Box } from "../components/Box"
-import { Card as UICard, CardProps } from "../components/Card"
-import { CardGroup } from "../components/CardGroup"
-import { Transaction, TransactionProps } from "../components/Transaction"
-import { TransactionGroup } from "../components/TransactionGroup"
-import { BarChart } from "../components/BarChart"
-import { PieChart } from "../components/PieChart"
-import { LineChart } from "../components/LineChart"
-import { UserGroup } from "../components/UserGroup"
-import { InputField } from "../components/InputField"
-import { Button } from "../components/Button"
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { global, color } from '@helper/tokens'
+import { Page } from '@layout/Page'
+import { Box } from '@component/Box'
+import { Card as UICard, CardProps } from '@component/Card'
+import { CardGroup } from '@component/CardGroup'
+import { Transaction, TransactionProps } from '@component/Transaction'
+import { TransactionGroup } from '@component/TransactionGroup'
+import { BarChart } from '@component/BarChart'
+import { PieChart } from '@component/PieChart'
+import { LineChart } from '@component/LineChart'
+import { UserGroup } from '@component/UserGroup'
+import { InputField } from '@component/InputField'
+import { Button } from '@component/Button'
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -45,6 +45,36 @@ const Form = styled.div`
 
 		@media screen and (min-width: ${global.breakpoint}px) {
 			padding-right: 114px;
+		}
+	}
+`
+
+const Row = styled.div`
+	margin: 0 0 22px;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		display: flex;
+		flex-flow: row wrap;
+		margin: 0 -15px 30px;
+	}
+
+	&:last-child {
+		@media screen and (min-width: ${global.breakpoint}px) {
+			margin-bottom: 0;
+		}
+	}
+`
+
+const Col = styled.div<{ $size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 }>`
+	margin-bottom: 22px;
+
+	@media screen and (min-width: ${global.breakpoint}px) {
+		min-width: 1px;
+		margin-bottom: 0;
+		padding: 0 15px;
+
+		@media screen and (min-width: ${global.breakpoint}px) {
+			flex: ${ props => props.$size !== undefined ? '0 0 ' + (props.$size / 12) * 100 + '%' : '1' };
 		}
 	}
 `
@@ -221,78 +251,91 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<Page title="Dashboard" fullwidth={ true }>
-			<div className="flex flex-col lg:flex-row lg:space-x-[30px] mb-[22px]">
-				<Box title="My Cards" path="/credit-cards" boxed={ false } className="basis-full mb-[22px] lg:basis-8/12 lg:mb-0">
-					<CardGroup>
-						{ cards && cards.map( ( card, index ) => {
-							return (
-								<Card
-									key={ index }
-									name={ card.name }
-									number={ card.number }
-									balance={ card.balance }
-									expiration={ card.expiration }
-									light={ card.light } />
-							)
-						}) }
-					</CardGroup>
-				</Box>
+			<Row>
+				<Col $size={ 8 }>
+					<Box title="My Cards" path="/credit-cards" boxed={ false }>
+						<CardGroup>
+							{ cards && cards.map( ( card, index ) => {
+								return (
+									<Card
+										key={ index }
+										name={ card.name }
+										number={ card.number }
+										balance={ card.balance }
+										expiration={ card.expiration }
+										light={ card.light } />
+								)
+							}) }
+						</CardGroup>
+					</Box>
+				</Col>
 
-				<Box title="Recent Transactions" className="basis-full lg:basis-4/12">
-					<TransactionGroup>
-						{ transactions && transactions.map( ( transaction, index ) => {
-							return (
-								<Transaction
-									key={ index }
-									amount={ transaction.amount }
-									date={ transaction.date }
-									description={ transaction.description }
-									source={ transaction.source }
-									/>
-							)
-						}) }
-					</TransactionGroup>
-				</Box>
-			</div>
+				<Col $size={ 4 }>
+					<Box title="Recent Transactions">
+						<TransactionGroup>
+							{ transactions && transactions.map( ( transaction, index ) => {
+								return (
+									<Transaction
+										key={ index }
+										amount={ transaction.amount }
+										date={ transaction.date }
+										description={ transaction.description }
+										source={ transaction.source }
+										/>
+								)
+							}) }
+						</TransactionGroup>
+					</Box>
+				</Col>
+			</Row>
 
-			<div className="flex flex-col lg:flex-row lg:space-x-[30px] mb-[22px]">
-				<Box title="Weekly Activity" className="basis-full mb-[22px] lg:basis-8/12 lg:mb-0">
-					{ activity.length > 0 && <BarChart datasets={ activity } /> }
-				</Box>
+			<Row>
+				<Col $size={ 8 }>
+					<Box title="Weekly Activity" fullHeight={ true }>
+						{ activity.length > 0 && <BarChart datasets={ activity } /> }
+					</Box>
+				</Col>
 
-				<Box title="Expense Statistics" className="basis-full lg:basis-4/12">
-					{ expenses.length > 0 && <PieChart datasets={ expenses } /> }
-				</Box>
-			</div>
+				<Col $size={ 4 }>
+					<Box title="Expense Statistics" fullHeight={ true }>
+						{ expenses.length > 0 && <PieChart datasets={ expenses } /> }
+					</Box>
+				</Col>
+			</Row>
 
-			<div className="flex flex-col lg:flex-row lg:space-x-[30px]">
-				<Box title="Quick Transfer" className="basis-full mb-[22px] lg:basis-4/12 lg:mb-0">
-					<UserGroup data={ contacts } />
+			<Row>
+				<Col $size={ 5 }>
+					<Box title="Quick Transfer">
+						<UserGroup data={ contacts } />
 
-					<Form>
-						<InputField
-							id="transfer-amount"
-							type="number"
-							label="Write Amount"
-							placeholder="525.50"
-							value={ transferAmount || '' }
-							solid={ true }
-							horizontal={ true }
-							onChange={ ( e ) => setTransferAmount( e.target.value ) } />
+						<Form>
+							<InputField
+								id="transfer-amount"
+								type="number"
+								label="Write Amount"
+								placeholder="525.50"
+								value={ transferAmount || '' }
+								min={0}
+								solid={ true }
+								horizontal={ true }
+								onChange={ ( e ) => setTransferAmount( e.target.value ) } />
 
-						<Button
-							label="Send"
-							icon={{ name: 'paper-plane', position: 'trail' }}
-							inline={ true }
-							disabled={ !transferAmount.trim() }
-							onClick={ handleTransferAmount } />
-					</Form>
-				</Box>
+							<Button
+								label="Send"
+								icon={{ name: 'paper-plane', position: 'trail' }}
+								inline={ true }
+								disabled={ !transferAmount.trim() }
+								onClick={ handleTransferAmount } />
+						</Form>
+					</Box>
+				</Col>
 
-				<Box title="Balance History" className="basis-full lg:basis-8/12">
-					<LineChart />
-				</Box>
-			</div>
+				<Col $size={ 7 }>
+					<Box title="Balance History">
+						<LineChart />
+					</Box>
+				</Col>
+			</Row>
 		</Page>
 	)
 }

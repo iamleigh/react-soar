@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { global } from '../../utils/tokens'
+import { global } from '@helper/tokens'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, registerables } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'

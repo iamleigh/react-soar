@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import { global, color } from "../../utils/tokens"
-import { User } from "../components/User"
-import { Search as UISearch } from "../components/Search"
-import { ButtonIcon } from "../components/ButtonIcon"
+import { global, color } from "@helper/tokens"
+import { User } from "@component/User"
+import { Search as UISearch } from "@component/Search"
+import { ButtonIcon } from "@component/ButtonIcon"
 
 const tokens = {
 	header: {
@@ -83,6 +83,7 @@ const Title = styled.h1`
 	margin: 0;
 	padding: 0;
 	color: ${color.primary.dark};
+	font-weight: 600;
 	font-size: 20px;
 	line-height: 24px;
 
@@ -114,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ title, sidebarFn, ...props }) => {
 				<Search />
 				<ButtonIcon icon="settings" label="Open Settings" />
 				<ButtonIcon icon="notification" label="Open Notification" />
-				<User image="https://i.pravatar.cc/300" />
+				<User />
 			</RightGroup>
 		</Container>
 	);

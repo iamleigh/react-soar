@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import '@fontsource/lato/400.css'
 import '@fontsource/lato/700.css' // Use 700 instead of 600 since that weight is not available through @fontsource
-import { global, color, border } from "../../utils/tokens"
+import { global, color, border } from "@helper/tokens"
 
 // Import card chip
 import chipLight1x from '../../assets/images/card-chip-light.png'
