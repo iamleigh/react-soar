@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { global } from '@helper/tokens'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, registerables } from 'chart.js'
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 import { Pie } from 'react-chartjs-2'
+import { Loader } from '@component/Loader'
 
 ChartJS.register( ...registerables, ArcElement, Tooltip, Legend, ChartDataLabels )
 
@@ -30,9 +31,35 @@ interface PieChartProps {
 }
 
 export const PieChart: React.FC<PieChartProps> = ({ datasets }) => {
+	const [isLoading, setIsLoading] = useState<boolean>( false )
+
 	const getLabels: string[] = [],
 		getValues: number[] = [],
 		getColors: string[] = []
+
+	useEffect( () => {
+		let resizeTimeout: NodeJS.Timeout
+
+		// Update pie width on window resize
+		const handleResize = () => {
+			setIsLoading( true )
+
+			// Debounce: Reset `isLoading` after resize stops
+			clearTimeout( resizeTimeout )
+
+			resizeTimeout = setTimeout( () => setIsLoading( false ), 300 )
+		}
+		window.addEventListener( 'resize', handleResize )
+
+		// Initial call to set pie width
+		handleResize()
+
+		// Cleanup on unmount
+		return () => {
+			window.removeEventListener( 'resize', handleResize )
+			clearTimeout( resizeTimeout )
+		}
+	}, []);
 
 	datasets.forEach( data => {
 		getLabels.push( data.label )
@@ -82,9 +109,11 @@ export const PieChart: React.FC<PieChartProps> = ({ datasets }) => {
 		}]
 	}
 
-	return (
-		<Container>
-			<Pie options={ options } data={ data } />
-		</Container>
-	)
+	return isLoading
+		? <Loader title="Loading" />
+		: (
+			<Container>
+				<Pie options={ options } data={ data } />
+			</Container>
+		)
 }

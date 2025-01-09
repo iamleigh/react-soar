@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { global, color } from '@helper/tokens'
 import { Chart as ChartJS, ChartOptions, Plugin, registerables } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
+import { Loader } from '@component/Loader'
 
 const legendMargin: Plugin = {
 	id: 'legendMargin',
@@ -69,7 +70,7 @@ interface BarChartProps {
 }
 
 export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
-	const [isLoading, setIsLoading] = useState<boolean>( false )
+	const [isLoading, setIsLoading] = useState<boolean>( true )
 	const [barWidth, setBarWidth] = useState<number>( 7 )
 
 	useEffect( () => {
@@ -167,9 +168,11 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 		datasets: setDatasets,
 	}
 
-	return isLoading ? 'loading data' : (
-		<Container>
-			<Bar options={ options } data={ data } />
-		</Container>
-	)
+	return isLoading
+		? <Loader title="Loading" />
+		: (
+			<Container>
+				<Bar options={ options } data={ data } />
+			</Container>
+		)
 }
