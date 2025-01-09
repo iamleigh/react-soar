@@ -11,6 +11,7 @@ import { BarChart } from '@component/BarChart'
 import { PieChart } from '@component/PieChart'
 import { LineChart } from '@component/LineChart'
 import { Loader } from '../components/Loader'
+import { QuickTransfer } from '../components/QuickTransfer'
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -290,6 +291,7 @@ const Dashboard: React.FC = () => {
 			<Row>
 				<Col $size={ 5 }>
 					<Box title="Quick Transfer">
+						<QuickTransfer />
 					</Box>
 				</Col>
 
