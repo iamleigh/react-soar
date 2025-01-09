@@ -169,9 +169,7 @@ export const BarChart: React.FC<BarChartProps> = ({ datasets }) => {
 	}
 
 	return isLoading
-		? <Loader
-			title="Preparing your data"
-			message="Setting up your transactions and analyzing your weekly activity to display..." />
+		? <Loader title="Loading" />
 		: (
 			<Container>
 				<Bar options={ options } data={ data } />

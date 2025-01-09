@@ -143,7 +143,7 @@ export const LineChart: React.FC = () => {
 	}
 
 	return isLoading
-		? <Loader title="Preparing your data" />
+		? <Loader title="Loading" />
 		: (
 			<Container>
 				<Line options={ options } data={ data } />

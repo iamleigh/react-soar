@@ -110,7 +110,7 @@ export const PieChart: React.FC<PieChartProps> = ({ datasets }) => {
 	}
 
 	return isLoading
-		? <Loader title="Preparing your data" />
+		? <Loader title="Loading" />
 		: (
 			<Container>
 				<Pie options={ options } data={ data } />
