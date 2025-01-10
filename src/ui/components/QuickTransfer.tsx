@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { global } from '@helper/tokens'
-import { Button } from './Button'
-import { InputField } from './InputField'
-import { UserGroup } from '@component/UserGroup'
+import { Button } from '@component/Button'
+import { InputField } from '@component/InputField'
 
-const Form = styled.div`
+const FieldGroup = styled.div`
 	position: relative;
 	margin-top: 25px;
 
@@ -29,16 +28,18 @@ const Form = styled.div`
 `
 
 export const QuickTransfer: React.FC = () => {
-	const [transferAmount, setTransferAmount] = useState( '' )
+	const [payee, setPayee] = useState<boolean>(false)
+	const [currentPayee, setCurrentPayee] = useState<number|null>(null)
+	const [value, setValue] = useState<string>( '' )
 	const [contacts, setContacts] = useState<{
 		name: string
 		role: string
 		image: string
 	}[]>([])
 
-	const handleTransferAmount = () => {
-		setTransferAmount( '' )
-		window.alert( `$${ transferAmount } successfully transferred` )
+	const handleTransaction = () => {
+		setValue( '' )
+		window.alert( `$${ value } successfully transferred` )
 	}
 
 	useEffect(() => {
@@ -50,27 +51,50 @@ export const QuickTransfer: React.FC = () => {
 
 	return (
 		<>
-			<UserGroup data={ contacts } />
+			<ul>
+				{ contacts.map( ( contact, index ) => {
+					const payeeFunc = () => {
+						setCurrentPayee(index)
 
-			<Form>
+						if ( index === currentPayee ) {
+							setCurrentPayee(null)
+							setPayee(false)
+						} else {
+							setPayee(true)
+						}
+					}
+
+					return (
+						<li key={ `contact-${ index }` }>
+							<button onClick={payeeFunc}>
+								{ contact.name }<br/>
+								{ contact.role }
+							</button>
+						</li>
+					)
+				}) }
+			</ul>
+
+			<FieldGroup>
 				<InputField
 					id="transfer-amount"
 					type="number"
 					label="Write Amount"
 					placeholder="525.50"
-					value={ transferAmount || '' }
+					value={ value || '' }
 					min={0}
 					solid={ true }
 					horizontal={ true }
-					onChange={ ( e ) => setTransferAmount( e.target.value ) } />
+					{ ...( ! payee && { disabled: true } ) }
+					onChange={ e => setValue( e.target.value ) } />
 
 				<Button
 					label="Send"
 					icon={{ name: 'paper-plane', position: 'trail' }}
 					inline={ true }
-					disabled={ !transferAmount.trim() }
-					onClick={ handleTransferAmount } />
-			</Form>
+					{ ...( ( ! payee || 0 >= Number( value ) ) && { disabled: true }) }
+					onClick={ handleTransaction } />
+			</FieldGroup>
 		</>
 	)
 }

@@ -82,6 +82,12 @@ const GlobalStyles = createGlobalStyle`
 	[hidden] {
 		display: none;
 	}
+
+	[disabled] {
+		cursor: default;
+		pointer-events: none;
+		opacity: 0.5;
+	}
 `
 
 export default GlobalStyles
