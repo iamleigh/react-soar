@@ -97,6 +97,7 @@ export const QuickTransfer: React.FC = () => {
 
 						if ( index === currentPayee ) {
 							setCurrentPayee(null)
+							setValue( '' )
 							setPayee(false)
 						} else {
 							setPayee(true)
