@@ -10,10 +10,8 @@ import { TransactionGroup } from '@component/TransactionGroup'
 import { BarChart } from '@component/BarChart'
 import { PieChart } from '@component/PieChart'
 import { LineChart } from '@component/LineChart'
-import { UserGroup } from '@component/UserGroup'
-import { InputField } from '@component/InputField'
-import { Button } from '@component/Button'
 import { Loader } from '../components/Loader'
+import { QuickTransfer } from '../components/QuickTransfer'
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -23,29 +21,6 @@ const Card = styled(UICard)`
 
 		@media screen and (min-width: ${global.breakpoint}px) {
 			margin-left: 30px;
-		}
-	}
-`
-
-const Form = styled.div`
-	position: relative;
-	margin-top: 25px;
-
-	@media screen and (min-width: ${global.breakpoint}px) {
-		margin-top: 27px;
-	}
-
-	button {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
-
-	input {
-		padding-right: 125px;
-
-		@media screen and (min-width: ${global.breakpoint}px) {
-			padding-right: 114px;
 		}
 	}
 `
@@ -94,11 +69,6 @@ const Dashboard: React.FC = () => {
 		label: string
 		value: number
 		color: string
-	}[]>([])
-	const [contacts, setContacts] = useState<{
-		name: string
-		role: string
-		image: string
 	}[]>([])
 
 	useEffect(() => {
@@ -251,18 +221,7 @@ const Dashboard: React.FC = () => {
 				console.log( 'Failed to fetch transactions:', err  || 'Failed to fetch cards' )
 				setIsLoadingTransactions( false )
 			})
-
-		fetch( '/api/contacts' )
-			.then((res) => res.json())
-			.then((data: {name: string, role: string, image: string}[]) => setContacts(data))
-			.catch((err) => console.log( 'Failed to fetch contacts:', err ))
 	}, [])
-
-	const [transferAmount, setTransferAmount] = useState( '' )
-	const handleTransferAmount = () => {
-		setTransferAmount( '' )
-		window.alert( `$${ transferAmount } successfully transferred` )
-	}
 
 	return (
 		<Page title="Dashboard" fullwidth={ true }>
@@ -332,27 +291,7 @@ const Dashboard: React.FC = () => {
 			<Row>
 				<Col $size={ 5 }>
 					<Box title="Quick Transfer">
-						<UserGroup data={ contacts } />
-
-						<Form>
-							<InputField
-								id="transfer-amount"
-								type="number"
-								label="Write Amount"
-								placeholder="525.50"
-								value={ transferAmount || '' }
-								min={0}
-								solid={ true }
-								horizontal={ true }
-								onChange={ ( e ) => setTransferAmount( e.target.value ) } />
-
-							<Button
-								label="Send"
-								icon={{ name: 'paper-plane', position: 'trail' }}
-								inline={ true }
-								disabled={ !transferAmount.trim() }
-								onClick={ handleTransferAmount } />
-						</Form>
+						<QuickTransfer />
 					</Box>
 				</Col>
 
