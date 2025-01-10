@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { global } from '@helper/tokens'
+import { global, color } from '@helper/tokens'
 import { Button } from '@component/Button'
 import { InputField } from '@component/InputField'
 
@@ -24,6 +24,45 @@ const FieldGroup = styled.div`
 		@media screen and (min-width: ${global.breakpoint}px) {
 			padding-right: 114px;
 		}
+	}
+`
+
+const UserGroup = styled.ul`
+	overflow-x: auto;
+	display: flex;
+	flex-flow: row nowrap;
+	margin: 0 -10px;
+`
+
+const UserItem = styled.li`
+	flex: 0 0 auto;
+	padding: 0 10px;
+`
+
+const UserButton = styled.button`
+	display: block;
+`
+
+const UserImage = styled.img<{ $active?: boolean }>`
+	width: 70px;
+	height: 70px;
+	display: block;
+	margin: 0 auto;
+	border-radius: 50%;
+`
+
+const UserText = styled.span<{ $small?: boolean, $active?: boolean }>`
+	display: block;
+	margin-top: ${ props => props.$small ? 1 : 12 }px;
+	color: ${props => props.$small ? color.secondary.dark : color.mono.dark };
+	font-size: 16px;
+	text-align: center;
+	${props => props.$active && 'text-shadow: 0 0 1px black;'}
+	transition: ${global.transition};
+
+	${UserButton}:hover & {
+		${props => !props.$small && 'color: ' + color.primary.base + ';' }
+		${props => !props.$small && 'text-shadow: 0 0 1px ' + color.primary.base + ';'}
 	}
 `
 
@@ -51,7 +90,7 @@ export const QuickTransfer: React.FC = () => {
 
 	return (
 		<>
-			<ul>
+			<UserGroup>
 				{ contacts.map( ( contact, index ) => {
 					const payeeFunc = () => {
 						setCurrentPayee(index)
@@ -65,15 +104,16 @@ export const QuickTransfer: React.FC = () => {
 					}
 
 					return (
-						<li key={ `contact-${ index }` }>
-							<button onClick={payeeFunc}>
-								{ contact.name }<br/>
-								{ contact.role }
-							</button>
-						</li>
+						<UserItem key={ `contact-${ index }` }>
+							<UserButton onClick={ payeeFunc }>
+								<UserImage $active={ index === currentPayee } src={ contact.image } alt={ `${contact.name} avatar` } />
+								<UserText $active={ index === currentPayee }>{ contact.name }</UserText>
+								<UserText $small={ true } $active={ index === currentPayee }>{ contact.role }</UserText>
+							</UserButton>
+						</UserItem>
 					)
 				}) }
-			</ul>
+			</UserGroup>
 
 			<FieldGroup>
 				<InputField
