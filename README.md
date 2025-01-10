@@ -29,6 +29,9 @@ For supporting branches we're going to use:
 - `hotfix/`: To store code that's gonna patch production.
 - `release/`: To store code to be released, as part of the workflow.
 
+## Poject Roadmap
+This project overview of upcoming changes are listed in the **[Roadmap](docs/roadmap.md)** file.
+
 ## Getting Started
 
 ### 📝 Requirements
