@@ -78,6 +78,8 @@ export const QuickTransfer: React.FC = () => {
 
 	const handleTransaction = () => {
 		setValue( '' )
+		setPayee( false )
+		setCurrentPayee( null )
 		window.alert( `$${ value } successfully transferred` )
 	}
 
