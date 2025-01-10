@@ -1,4 +1,4 @@
-# Roadmap
+# Project Roadmap
 
 This file provides an overview of the upcoming changes and the direction this project is heading and organized in steps that focus on a specific theme.
 
@@ -8,7 +8,7 @@ This file provides an overview of the upcoming changes and the direction this pr
 	- Edit Profile: Add ability to save uploaded avatar.
 	- Edit Profile: Add success message after clicking on "save" button.
 	- Edit Profile: Add calendar picker to "date of birth" field.
-	- Edit Profile: Hide password
+	- Edit Profile: Hide password.
 
 - Dropdown Settings:
 	- Add dropdown menu and link them to each settings tab.
