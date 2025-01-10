@@ -10,9 +10,8 @@ import { TransactionGroup } from '@component/TransactionGroup'
 import { BarChart } from '@component/BarChart'
 import { PieChart } from '@component/PieChart'
 import { LineChart } from '@component/LineChart'
-import { UserGroup } from '@component/UserGroup'
-import { InputField } from '@component/InputField'
-import { Button } from '@component/Button'
+import { Loader } from '../components/Loader'
+import { QuickTransfer } from '../components/QuickTransfer'
 
 const Card = styled(UICard)`
 	flex: 0 0 auto;
@@ -22,29 +21,6 @@ const Card = styled(UICard)`
 
 		@media screen and (min-width: ${global.breakpoint}px) {
 			margin-left: 30px;
-		}
-	}
-`
-
-const Form = styled.div`
-	position: relative;
-	margin-top: 25px;
-
-	@media screen and (min-width: ${global.breakpoint}px) {
-		margin-top: 27px;
-	}
-
-	button {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
-
-	input {
-		padding-right: 125px;
-
-		@media screen and (min-width: ${global.breakpoint}px) {
-			padding-right: 114px;
 		}
 	}
 `
@@ -80,6 +56,8 @@ const Col = styled.div<{ $size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 1
 `
 
 const Dashboard: React.FC = () => {
+	const [isLoadingCards, setIsLoadingCards] = useState<boolean>( true )
+	const [isLoadingTransactions, setIsLoadingTransactions] = useState<boolean>( true )
 	const [cards, setCards] = useState<CardProps[]>([])
 	const [transactions, setTransactions] = useState<TransactionProps[]>([])
 	const [activity, setActivity] = useState<{
@@ -92,16 +70,17 @@ const Dashboard: React.FC = () => {
 		value: number
 		color: string
 	}[]>([])
-	const [contacts, setContacts] = useState<{
-		name: string
-		role: string
-		image: string
-	}[]>([])
 
 	useEffect(() => {
+		setIsLoadingCards( true )
+		setIsLoadingTransactions( true )
+
 		fetch( '/api/card' )
 			.then((res) => res.json())
-			.then((data: CardProps[]) => setCards(data))
+			.then((data: CardProps[]) => {
+				setCards(data)
+				setIsLoadingCards(false)
+			})
 			.catch((err) => console.log( 'Failed to fetch cards:', err ))
 
 		fetch( '/api/transactions' )
@@ -234,39 +213,39 @@ const Dashboard: React.FC = () => {
 				}))
 
 				setExpenses( expensesData )
+
+				// Loading complete
+				setIsLoadingTransactions( false )
 			})
-			.catch((err) => console.log( 'Failed to fetch transactions:', err ))
-
-		fetch( '/api/contacts' )
-			.then((res) => res.json())
-			.then((data: {name: string, role: string, image: string}[]) => setContacts(data))
-			.catch((err) => console.log( 'Failed to fetch contacts:', err ))
+			.catch((err) => {
+				console.log( 'Failed to fetch transactions:', err  || 'Failed to fetch cards' )
+				setIsLoadingTransactions( false )
+			})
 	}, [])
-
-	const [transferAmount, setTransferAmount] = useState( '' )
-	const handleTransferAmount = () => {
-		setTransferAmount( '' )
-		window.alert( `$${ transferAmount } successfully transferred` )
-	}
 
 	return (
 		<Page title="Dashboard" fullwidth={ true }>
 			<Row>
 				<Col $size={ 8 }>
 					<Box title="My Cards" path="/credit-cards" boxed={ false }>
-						<CardGroup>
-							{ cards && cards.map( ( card, index ) => {
-								return (
-									<Card
-										key={ index }
-										name={ card.name }
-										number={ card.number }
-										balance={ card.balance }
-										expiration={ card.expiration }
-										light={ card.light } />
-								)
-							}) }
-						</CardGroup>
+						{ isLoadingCards
+							? <Loader title="Loading" />
+							: (
+								<CardGroup>
+									{ cards && cards.map( ( card, index ) => {
+										return (
+											<Card
+												key={ index }
+												name={ card.name }
+												number={ card.number }
+												balance={ card.balance }
+												expiration={ card.expiration }
+												light={ card.light } />
+										)
+									}) }
+								</CardGroup>
+							)
+						}
 					</Box>
 				</Col>
 
@@ -292,13 +271,19 @@ const Dashboard: React.FC = () => {
 			<Row>
 				<Col $size={ 8 }>
 					<Box title="Weekly Activity" fullHeight={ true }>
-						{ activity.length > 0 && <BarChart datasets={ activity } /> }
+						{ isLoadingTransactions
+							? <Loader title="Loading" />
+							: <BarChart datasets={ activity } />
+						}
 					</Box>
 				</Col>
 
 				<Col $size={ 4 }>
 					<Box title="Expense Statistics" fullHeight={ true }>
-						{ expenses.length > 0 && <PieChart datasets={ expenses } /> }
+						{ !isLoadingTransactions && expenses.length > 0
+							? <PieChart datasets={ expenses } />
+							: <Loader title="Loading" />
+						}
 					</Box>
 				</Col>
 			</Row>
@@ -306,33 +291,16 @@ const Dashboard: React.FC = () => {
 			<Row>
 				<Col $size={ 5 }>
 					<Box title="Quick Transfer">
-						<UserGroup data={ contacts } />
-
-						<Form>
-							<InputField
-								id="transfer-amount"
-								type="number"
-								label="Write Amount"
-								placeholder="525.50"
-								value={ transferAmount || '' }
-								min={0}
-								solid={ true }
-								horizontal={ true }
-								onChange={ ( e ) => setTransferAmount( e.target.value ) } />
-
-							<Button
-								label="Send"
-								icon={{ name: 'paper-plane', position: 'trail' }}
-								inline={ true }
-								disabled={ !transferAmount.trim() }
-								onClick={ handleTransferAmount } />
-						</Form>
+						<QuickTransfer />
 					</Box>
 				</Col>
 
 				<Col $size={ 7 }>
 					<Box title="Balance History">
-						<LineChart />
+						{ isLoadingTransactions
+							? <Loader title="Loading" />
+							: <LineChart />
+						}
 					</Box>
 				</Col>
 			</Row>
