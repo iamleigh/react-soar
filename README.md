@@ -15,9 +15,6 @@ your frontend skills, you're welcome to submit a pull request. However, if you'r
 a QA Engineer looking for some fun breaking things, you're welcome as well to
 request some fixes.
 
-You can find the project published in **Vercel**:\
-https://react-soar.vercel.app/
-
 ## Project Workflow
 This project uses a Gitflow workflow using two main branches to record the history
 of the project:
