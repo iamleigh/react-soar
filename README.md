@@ -42,7 +42,7 @@ Installs any specified packages in the `package.json` file inside
 #### `npm run dev`
 
 Runs the project locally enabling [http://localhost:5173/](http://localhost:5173/)
-for preview.\
+for preview.
 
 The page will reload on every change you make.
 
